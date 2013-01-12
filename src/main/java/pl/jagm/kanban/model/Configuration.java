@@ -6,9 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class Configuration {
+public class Configuration implements Serializable {
 
     private Long id;
     private String name = "";
@@ -59,6 +60,7 @@ public class Configuration {
 
         Configuration that = (Configuration) o;
 
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (!name.equals(that.name)) return false;
         if (!value.equals(that.value)) return false;
 
@@ -67,7 +69,8 @@ public class Configuration {
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + name.hashCode();
         result = 31 * result + value.hashCode();
         return result;
     }

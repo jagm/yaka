@@ -50,4 +50,6 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
+    <bean id="configurationDao" class="pl.jagm.kanban.dao.ConfigurationDaoImpl" />
+
 </beans>
