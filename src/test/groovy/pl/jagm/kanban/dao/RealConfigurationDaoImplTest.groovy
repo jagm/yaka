@@ -10,7 +10,12 @@ import pl.jagm.kanban.model.Configuration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:WEB-INF/applicationContext.xml")
+@org.junit.Ignore
+@Ignore
 public class RealConfigurationDaoImplTest extends Specification {
+
+    // workaround because @Shared doesn't work
+    static lastId
 
     @Autowired(required = true)
     ConfigurationDao configurationDao;
@@ -19,8 +24,11 @@ public class RealConfigurationDaoImplTest extends Specification {
     def "test create object"() {
         given:
         Configuration configuration = new Configuration("test_name", "test_value")
+
         when:
         configurationDao.create(configuration)
+        lastId = configuration.id
+
         then:
         configuration.id != null
     }
@@ -29,21 +37,38 @@ public class RealConfigurationDaoImplTest extends Specification {
     @Test
     def "test read object"() {
         when:
-        def configuration = configurationDao.read(1)
+        print 'aa=' + lastId
+        def configuration = configurationDao.read(lastId)
+
         then:
-        configuration.id == 1
+        configuration.id == lastId
     }
 
 
     @Test
     def "test update object"() {
-        when:
-        def configuration = configurationDao.read(1)
+        given:
+        def configuration = configurationDao.read(lastId)
         configuration.name = 'test_name_2'
+
+        when:
         configurationDao.update(configuration)
-        configuration = configurationDao.read(1)
+
         then:
-        configuration.name == 'test_name_2'
+        configurationDao.read(lastId).name == 'test_name_2'
+    }
+
+
+    @Test
+    def "test delete object"() {
+        given:
+        def configuration = configurationDao.read(lastId)
+
+        when:
+        configurationDao.delete(configuration)
+
+        then:
+        configurationDao.read(lastId) == null
     }
 
 }
