@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Entity
 public class Configuration implements Serializable {
 
-    private Long id;
+    private int id;
     private String name = "";
     private String value = "";
 
@@ -25,11 +25,11 @@ public class Configuration implements Serializable {
 
     @Id
     @GeneratedValue
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -60,7 +60,7 @@ public class Configuration implements Serializable {
 
         Configuration that = (Configuration) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (id != that.id) return false;
         if (!name.equals(that.name)) return false;
         if (!value.equals(that.value)) return false;
 
@@ -69,7 +69,7 @@ public class Configuration implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = id;
         result = 31 * result + name.hashCode();
         result = 31 * result + value.hashCode();
         return result;
