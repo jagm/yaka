@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Transactional
-public abstract class Dao {
+public abstract class AbstractDao {
 
     @Autowired(required = true)
     private SessionFactory sessionFactory;

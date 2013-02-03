@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.jagm.kanban.model.Configuration;
 
 @Transactional
-public class ConfigurationDaoImpl extends Dao implements ConfigurationDao {
+public class ConfigurationDaoImpl extends AbstractDao implements ConfigurationDao {
 
     @Override
     public void create(@NotNull final Configuration configuration) {
