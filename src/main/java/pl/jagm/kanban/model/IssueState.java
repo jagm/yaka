@@ -5,10 +5,9 @@ import org.jetbrains.annotations.NotNull;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-public class IssueState implements Serializable {
+public class IssueState implements Model {
 
     @Id
     @GeneratedValue
@@ -27,6 +26,7 @@ public class IssueState implements Serializable {
     private DateTime created;
 
 
+    @Override
     public int getId() {
         return id;
     }

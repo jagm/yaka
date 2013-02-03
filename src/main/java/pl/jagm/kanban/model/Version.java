@@ -3,13 +3,12 @@ package pl.jagm.kanban.model;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 @Entity
-public class Version implements Serializable {
+public class Version implements Model {
 
     @Id
     @GeneratedValue
