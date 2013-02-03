@@ -12,12 +12,16 @@ import java.util.List;
 public class Board implements Serializable {
 
 
-    private int id;
-    private String name;
-    private List<State> states = new LinkedList();
-
     @Id
     @GeneratedValue
+    private int id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @OneToMany(mappedBy = "board")
+    private List<State> states = new LinkedList();
+
     public int getId() {
         return id;
     }
@@ -27,7 +31,6 @@ public class Board implements Serializable {
     }
 
     @NotNull
-    @Column(nullable = false)
     public String getName() {
         return name;
     }
@@ -37,7 +40,6 @@ public class Board implements Serializable {
     }
 
     @NotNull
-    @OneToMany(mappedBy = "board")
     public List<State> getStates() {
         return Collections.unmodifiableList(states);
     }

@@ -11,13 +11,20 @@ import java.util.List;
 @Entity
 public class State implements Serializable {
 
-    private int id;
-    private String name;
-    private Board board;
-    private List<Issue> issues = new LinkedList<>();
-
     @Id
     @GeneratedValue
+    private int id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "board")
+    private Board board;
+
+    @OneToMany(mappedBy = "state")
+    private List<IssueState> issues = new LinkedList<>();
+
     public int getId() {
         return id;
     }
@@ -27,7 +34,6 @@ public class State implements Serializable {
     }
 
     @NotNull
-    @Column(nullable = false)
     public String getName() {
         return name;
     }
@@ -37,8 +43,6 @@ public class State implements Serializable {
     }
 
     @NotNull
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "board")
     public Board getBoard() {
         return board;
     }
@@ -48,12 +52,11 @@ public class State implements Serializable {
     }
 
     @NotNull
-    @OneToMany(mappedBy = "state")
-    public List<Issue> getIssues() {
+    public List<IssueState> getIssues() {
         return Collections.unmodifiableList(issues);
     }
 
-    public void setIssues(@NotNull List<Issue> issues) {
+    public void setIssues(@NotNull List<IssueState> issues) {
         this.issues = issues;
     }
 }

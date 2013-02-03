@@ -11,12 +11,17 @@ import java.util.List;
 @Entity
 public class Version implements Serializable {
 
-    private int id;
-    private String name;
-    private List<Issue> issues = new LinkedList();
-
     @Id
     @GeneratedValue
+    private int id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @OneToMany(mappedBy = "version")
+    private List<Issue> issues = new LinkedList();
+
+
     public int getId() {
         return id;
     }
@@ -26,7 +31,6 @@ public class Version implements Serializable {
     }
 
     @NotNull
-    @Column(nullable = false)
     public String getName() {
         return name;
     }
@@ -36,7 +40,6 @@ public class Version implements Serializable {
     }
 
     @NotNull
-    @OneToMany(mappedBy = "version")
     public List<Issue> getIssues() {
         return Collections.unmodifiableList(issues);
     }

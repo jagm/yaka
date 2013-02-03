@@ -4,20 +4,31 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 public class Issue implements Serializable {
 
     private static final String JIRA_PREFIX = "AVGM-";
 
-    private int id;
-    private String name;
-    private Version version;
-    private State state;
-    private int jiraId;
-
     @Id
     @GeneratedValue
+    private int id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "version_id")
+    private Version version;
+
+    private int jiraId;
+
+    @OneToMany(mappedBy = "issue")
+    private List<IssueState> states = new LinkedList<>();
+
     public int getId() {
         return id;
     }
@@ -27,7 +38,6 @@ public class Issue implements Serializable {
     }
 
     @NotNull
-    @Column(nullable = false)
     public String getName() {
         return name;
     }
@@ -37,8 +47,6 @@ public class Issue implements Serializable {
     }
 
     @NotNull
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "version_id")
     public Version getVersion() {
         return version;
     }
@@ -47,22 +55,20 @@ public class Issue implements Serializable {
         this.version = version;
     }
 
-    @NotNull
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "state_id")
-    public State getState() {
-        return state;
-    }
-
-    public void setState(@NotNull State state) {
-        this.state = state;
-    }
-
     public int getJiraId() {
         return jiraId;
     }
 
     public void setJiraId(int jiraId) {
         this.jiraId = jiraId;
+    }
+
+    @NotNull
+    public List<IssueState> getStates() {
+        return Collections.unmodifiableList(states);
+    }
+
+    public void setStates(@NotNull List<IssueState> states) {
+        this.states = states;
     }
 }

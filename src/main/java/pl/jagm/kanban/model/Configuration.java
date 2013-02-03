@@ -11,9 +11,16 @@ import java.io.Serializable;
 @Entity
 public class Configuration implements Serializable {
 
+    @Id
+    @GeneratedValue
     private int id;
+
+    @Column(nullable = false)
     private String name = "";
+
+    @Column(nullable = false)
     private String value = "";
+
 
     public Configuration() {
     }
@@ -23,8 +30,6 @@ public class Configuration implements Serializable {
         this.value = value;
     }
 
-    @Id
-    @GeneratedValue
     public int getId() {
         return id;
     }
@@ -34,7 +39,6 @@ public class Configuration implements Serializable {
     }
 
     @NotNull
-    @Column(nullable = false)
     public String getName() {
         return name;
     }
@@ -44,7 +48,6 @@ public class Configuration implements Serializable {
     }
 
     @NotNull
-    @Column(nullable = false)
     public String getValue() {
         return value;
     }
