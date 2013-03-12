@@ -66,8 +66,5 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
-    <bean id="configurationDao" class="pl.jagm.kanban.dao.ConfigurationDaoImpl"/>
-    <bean id="boardDao" class="pl.jagm.kanban.dao.BoardDaoImpl"/>
-    <bean id="issueDao" class="pl.jagm.kanban.dao.IssueDaoImpl"/>
 
 </beans>

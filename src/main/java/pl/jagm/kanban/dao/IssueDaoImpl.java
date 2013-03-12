@@ -1,11 +1,13 @@
 package pl.jagm.kanban.dao;
 
 import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import pl.jagm.kanban.model.Issue;
 
 import java.util.List;
 
+@Component
 @Transactional
 public class IssueDaoImpl extends AbstractDao implements IssueDao {
 

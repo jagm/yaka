@@ -3,11 +3,13 @@ package pl.jagm.kanban.dao;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import pl.jagm.kanban.model.Board;
 
 import java.util.List;
 
+@Component
 @Transactional
 public class BoardDaoImpl extends AbstractDao implements BoardDao {
 
