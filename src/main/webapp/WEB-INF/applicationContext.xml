@@ -19,9 +19,10 @@
     <mvc:annotation-driven/>
 
     <mvc:default-servlet-handler/>
-    <mvc:resources mapping="/js/**" location="/js/"/>
-    <mvc:resources mapping="/css/**" location="/css/"/>
-    <mvc:resources mapping="/img/**" location="/img/"/>
+    <mvc:resources mapping="/js/**" location="classpath:/js/"/>
+    <mvc:resources mapping="/css/**" location="classpath:/css/"/>
+    <mvc:resources mapping="/img/**" location="classpath:/img/"/>
+    <mvc:resources mapping="/templates/**" location="classpath:/templates/"/>
 
     <!-- Use @Transaction annotations for managing transactions  -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
@@ -33,7 +34,7 @@
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
-            <value>application.properties</value>
+            <value>classpath:application.properties</value>
         </property>
     </bean>
 
@@ -66,5 +67,7 @@
     </bean>
 
     <bean id="configurationDao" class="pl.jagm.kanban.dao.ConfigurationDaoImpl"/>
+    <bean id="boardDao" class="pl.jagm.kanban.dao.BoardDaoImpl"/>
+    <bean id="issueDao" class="pl.jagm.kanban.dao.IssueDaoImpl"/>
 
 </beans>

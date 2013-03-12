@@ -1,0 +1,14 @@
+<h1>{{board.name}}</h1>
+
+<ul>
+    <li ng-repeat="state in board.states">
+        <h2>{{ state.name }}</h2>
+        <ul>
+            <li ng-repeat="issue in issues | filter:{states.0.state.id: state.id}">
+                <h3>{{issue.name}}</h3>
+                {{issue.version.name}}<br/>
+                {{issue.states.0.created | jodaDate | date:'medium'}}
+            </li>
+        </ul>
+    </li>
+</ul>
