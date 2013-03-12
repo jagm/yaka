@@ -25,7 +25,8 @@ public class Issue implements Model {
 
     private int jiraId;
 
-    @OneToMany(mappedBy = "issue")
+    @OneToMany(mappedBy = "issue", fetch = FetchType.EAGER)
+    @OrderBy("created DESC")
     private List<IssueState> states = new LinkedList<>();
 
     public int getId() {

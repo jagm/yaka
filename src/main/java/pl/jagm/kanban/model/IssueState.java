@@ -1,8 +1,9 @@
 package pl.jagm.kanban.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.Type;
 import org.jetbrains.annotations.NotNull;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 
 import javax.persistence.*;
 
@@ -13,6 +14,7 @@ public class IssueState implements Model {
     @GeneratedValue
     private int id;
 
+    @JsonIgnore
     @ManyToOne(optional = false)
     @JoinColumn(name = "issue_id")
     private Issue issue;
@@ -23,7 +25,7 @@ public class IssueState implements Model {
 
     @Column(nullable = false)
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
-    private DateTime created;
+    private LocalDateTime created;
 
 
     @Override
@@ -54,16 +56,16 @@ public class IssueState implements Model {
     }
 
     @NotNull
-    public DateTime getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(@NotNull DateTime created) {
+    public void setCreated(@NotNull LocalDateTime created) {
         this.created = created;
     }
 
     @PrePersist
     protected void onCreate() {
-        created = new DateTime();
+        created = new LocalDateTime();
     }
 }

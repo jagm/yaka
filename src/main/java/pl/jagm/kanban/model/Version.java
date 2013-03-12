@@ -1,5 +1,6 @@
 package pl.jagm.kanban.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class Version implements Model {
     @Column(nullable = false)
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "version")
     private List<Issue> issues = new LinkedList();
 

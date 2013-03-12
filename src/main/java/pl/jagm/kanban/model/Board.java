@@ -1,5 +1,6 @@
 package pl.jagm.kanban.model;
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
@@ -18,7 +19,8 @@ public class Board implements Model {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "board")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
     private List<State> states = new LinkedList();
 
     public int getId() {

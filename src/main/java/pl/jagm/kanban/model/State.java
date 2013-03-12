@@ -1,5 +1,8 @@
 package pl.jagm.kanban.model;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
@@ -17,10 +20,13 @@ public class State implements Model {
     @Column(nullable = false)
     private String name;
 
+    @JsonBackReference
     @ManyToOne(optional = false)
     @JoinColumn(name = "board")
     private Board board;
 
+    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "state")
     private List<IssueState> issues = new LinkedList<>();
 
