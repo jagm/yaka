@@ -1,6 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" ng-app="kanban">
 
 <head>
     <meta charset="utf-8">
@@ -24,12 +24,15 @@
 
 <div class="container-fluid">
 
-    <h1>${message}</h1>
+    <div ng-view></div>
 
 </div>
 
 
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/app.js"></script>
+<script src="${pageContext.request.contextPath}/js/controllers.js"></script>
 </body>
 
 </html>
