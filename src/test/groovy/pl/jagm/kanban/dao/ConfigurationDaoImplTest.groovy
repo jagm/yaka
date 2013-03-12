@@ -2,8 +2,8 @@ package pl.jagm.kanban.dao
 
 import org.hibernate.Session
 import org.hibernate.SessionFactory
-import pl.jagm.kanban.model.Configuration;
-import spock.lang.*
+import pl.jagm.kanban.model.Configuration
+import spock.lang.Specification
 
 public class ConfigurationDaoImplTest extends Specification {
 
@@ -33,7 +33,7 @@ public class ConfigurationDaoImplTest extends Specification {
     def "read test"() {
         given:
         def configuration = new Configuration(
-                id:  5,
+                id: 5,
                 name: 'test name',
                 value: 'test value'
         )
@@ -82,9 +82,6 @@ public class ConfigurationDaoImplTest extends Specification {
         1 * sessionFactory.getCurrentSession() >> session
         1 * session.delete(configuration)
     }
-
-
-
 
 
 }
