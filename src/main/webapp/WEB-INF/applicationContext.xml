@@ -28,7 +28,7 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="prefix" value="/WEB-INF/classes/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 

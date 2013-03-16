@@ -1,0 +1,36 @@
+.states {
+    overflow: hidden;
+    list-style: none;
+    margin: 0;
+}
+
+.state {
+    float: left;
+    width: 200px;
+    margin: 10px 5px;
+    background: #ddd;
+    padding: 10px;
+    line-height: 25px;
+}
+
+.issues {
+    list-style: none;
+    margin: 0;
+}
+
+.issue {
+    padding: 0 10px;
+    background: #ff0;
+    overflow: hidden;
+}
+
+.issue .version {
+    font-size: 9px;
+    float: left;
+}
+
+.issue time {
+    display: block;
+    font-size: 9px;
+    float: right;
+}

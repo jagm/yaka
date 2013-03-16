@@ -7,6 +7,7 @@
     <title>Kanban</title>
 
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" media="screen">
 </head>
 
 <body>
@@ -30,7 +31,9 @@
 
 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/moment.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/app.js"></script>
 <script src="${pageContext.request.contextPath}/js/controllers.js"></script>
 </body>
