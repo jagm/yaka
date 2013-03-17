@@ -1,4 +1,5 @@
-<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#add-issue-modal">Add issue</button>
+<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#add-issue-modal">Add issue
+</button>
 
 <ul class="states">
     <li class="state span3" ng-repeat="state in board.states">
@@ -6,9 +7,12 @@
         <ul class="issues">
             <li class="issue" ng-repeat="issue in issues | filter:{states.0.state.id: state.id}">
                 <h4>{{issue.name}}</h4>
+
                 <div class="version">{{issue.version.name}}</div>
                 <time>{{issue.states.0.created | friendlyDate }}</time>
             </li>
         </ul>
     </li>
 </ul>
+
+<ng-include src="'templates/add-issue.html'"></ng-include>

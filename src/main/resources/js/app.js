@@ -1,4 +1,4 @@
-angular
+var app = angular
     .module('kanban', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
@@ -12,3 +12,10 @@ angular
     .filter('friendlyDate', function () {
         return KanbanApp.Filters.friendlyDate;
     });
+
+app.run(function ($http) {
+    $http.get('/kanban/version/list').success(function (data) {
+        KanbanApp.Configuration.versions = data;
+    });
+});
+

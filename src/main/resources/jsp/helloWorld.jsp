@@ -33,10 +33,10 @@
     <div ng-view></div>
 </div>
 
-<ng-include src="'templates/add-issue.html'"></ng-include>
-
 <script>
-    var KanbanApp = {};
+    var KanbanApp = {
+        Configuration: {}
+    };
 </script>
 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
