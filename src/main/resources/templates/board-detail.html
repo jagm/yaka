@@ -1,7 +1,7 @@
-<h1>{{board.name}}</h1>
+<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#add-issue-modal">Add issue</button>
 
 <ul class="states">
-    <li class="state" ng-repeat="state in board.states">
+    <li class="state span3" ng-repeat="state in board.states">
         <h3>{{ state.name }}</h3>
         <ul class="issues">
             <li class="issue" ng-repeat="issue in issues | filter:{states.0.state.id: state.id}">

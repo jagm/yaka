@@ -1,16 +1,16 @@
+.brand a {
+    color: #fff;
+}
+
 .states {
     overflow: hidden;
     list-style: none;
-    margin: 0;
+    margin: 20px 0 0;
 }
 
 .state {
-    float: left;
-    width: 200px;
-    margin: 10px 5px;
-    background: #ddd;
     padding: 10px;
-    line-height: 25px;
+    background: #ddd;
 }
 
 .issues {

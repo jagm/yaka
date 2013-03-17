@@ -14,7 +14,12 @@
 
 <div class="navbar navbar-static-top navbar-inverse">
     <div class="navbar-inner">
-        <a class="brand" href="${pageContext.request.contextPath}">Kanban</a>
+        <div class="brand">
+            <a href="${pageContext.request.contextPath}">Kanban</a>
+            <span ng-show="boardName"> /
+                <a href="#/board/{{boardId}}">{{ boardName }}</a>
+            </span>
+        </div>
         <ul class="nav pull-right">
             <li class="active"><a href="#">Link</a></li>
             <li><a href="#">Link</a></li>
@@ -26,8 +31,9 @@
 <div class="container-fluid">
 
     <div ng-view></div>
-
 </div>
+
+<ng-include src="'templates/add-issue.html'"></ng-include>
 
 <script>
     var KanbanApp = {};
