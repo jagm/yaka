@@ -13,9 +13,26 @@ var app = angular
         return KanbanApp.Filters.friendlyDate;
     });
 
-app.run(function ($http) {
+app.run(function ($http, $rootScope) {
     $http.get('/kanban/version/list').success(function (data) {
         KanbanApp.Configuration.versions = data;
+        $rootScope.versions = data;
     });
 });
 
+
+KanbanApp.Notify = (function () {
+
+    $(function () {
+        console.log($("#notify-container"));
+        $("#notify-container").notify();
+    });
+
+    return {
+        error: function (message, title) {
+            $("#notify-container")
+                .notify("create", "error-template", { title: title, text: message });
+        }
+    }
+
+})();

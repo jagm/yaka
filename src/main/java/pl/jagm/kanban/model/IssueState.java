@@ -27,6 +27,14 @@ public class IssueState implements Model {
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
     private LocalDateTime created;
 
+    public IssueState() {
+    }
+
+    public IssueState(@NotNull final Issue issue, @NotNull final State state) {
+        this.issue = issue;
+        this.state = state;
+        onCreate(); // fixme: fixme
+    }
 
     @Override
     public int getId() {
