@@ -5,7 +5,8 @@ KanbanApp.Filters = {
     },
 
     friendlyDate: function (date) {
-        --date[1]; // In JS: 0 - Jan, 11 - Dec
-        return moment(date).fromNow();
+        var newDate = angular.copy(date);
+        --newDate[1];
+        return moment(newDate).fromNow();
     }
 }
