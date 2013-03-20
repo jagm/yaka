@@ -3,6 +3,7 @@ package pl.jagm.kanban.model;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,15 +11,19 @@ import java.util.List;
 @Entity
 public class Issue implements Model {
 
+    // FIXME: move to configuration
     private static final String JIRA_PREFIX = "AVGM-";
 
     @Id
     @GeneratedValue
     private int id;
 
+    @javax.validation.constraints.NotNull
+    @Size(min = 4, max = 250)
     @Column(nullable = false)
     private String name;
 
+    @javax.validation.constraints.NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "version_id")
     private Version version;
@@ -70,5 +75,9 @@ public class Issue implements Model {
 
     public void setStates(@NotNull List<IssueState> states) {
         this.states = states;
+    }
+
+    public void addState(@NotNull IssueState state) {
+        states.add(state);
     }
 }
