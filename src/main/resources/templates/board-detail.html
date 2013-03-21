@@ -1,17 +1,21 @@
 <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#add-issue-modal">Add issue
 </button>
 
-<ul class="states">
+<ul class="states" kanban-issues>
     <li class="state span3" ng-repeat="state in board.states">
         <h3>{{ state.name }}</h3>
-        <ul class="issues">
-            <li class="issue" ng-repeat="issue in issues | filter:{states.0.state.id: state.id}">
-                <h4>{{issue.name}}</h4>
 
-                <div class="version">{{issue.version.name}}</div>
-                <time>{{issue.states.0.created | friendlyDate }}</time>
-            </li>
-        </ul>
+        <div>
+            <ul class="issues" data-state-id="{{state.id}}">
+                <li id="issue_{{issue.id}}" class="issue" data-issue-id="{{issue.id}}"
+                    ng-repeat="issue in issues | filter:{states.0.state.id: state.id}">
+                    <h4>{{issue.name}}</h4>
+
+                    <div class="version">{{issue.version.name}}</div>
+                    <time>{{issue.states.0.created | friendlyDate }}</time>
+                </li>
+            </ul>
+        </div>
     </li>
 </ul>
 

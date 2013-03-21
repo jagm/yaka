@@ -52,6 +52,7 @@
 <script src="${pageContext.request.contextPath}/js/filters.js"></script>
 <script src="${pageContext.request.contextPath}/js/app.js"></script>
 <script src="${pageContext.request.contextPath}/js/controllers.js"></script>
+<script src="${pageContext.request.contextPath}/js/directives.js"></script>
 </body>
 
 </html>

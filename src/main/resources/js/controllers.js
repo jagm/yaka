@@ -6,22 +6,48 @@ KanbanApp.Controllers = {
         });
     },
 
-    BoardDetailCtrl: function ($scope, $http, $routeParams, $rootScope) {
+    BoardDetailCtrl: function ($http, $scope, $routeParams, $rootScope, board, issues) {
         $scope.boardId = $routeParams.boardId;
-        $http.get('/kanban/board/read/' + $scope.boardId).success(function (data) {
-            $scope.board = data;
-            $rootScope.boardName = data.name;
-            $rootScope.boardId = data.id;
-        });
-        $http.get('/kanban/issues/list/' + $scope.boardId).success(function (data) {
-            $scope.issues = data;
-        });
 
-        /*$scope.$on('$', function() {
-         $('#inner-content-div').slimScroll({
-         height: '250px'
-         });
-         });*/
+        $rootScope.boardId = board.id;
+        $rootScope.boardName = board.name;
+
+        $scope.board = board;
+        $scope.issues = issues;
+
+        $scope.changeState = function (issueId, stateId) {
+            $http.post(
+                '/kanban/issues/change-state',
+                $.param({issue_id: issueId, state_id: stateId}),
+                {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+            ).success(function (data) {
+                    if (data.errors && data.errors.length) {
+                        KanbanApp.Notify.error(data.errors, 'error!!1')
+                    } else {
+
+                    }
+                    console.log(data);
+                });
+        };
+
+    },
+
+    BoardDetailCtrlResolve: {
+        board: function ($http, $q, $route) {
+            var deferred = $q.defer();
+            $http.get('/kanban/board/read/' + $route.current.params.boardId).success(function (data) {
+                deferred.resolve(data);
+            });
+            return deferred.promise;
+
+        },
+        issues: function ($http, $q, $route) {
+            var deferred = $q.defer();
+            $http.get('/kanban/issues/list/' + $route.current.params.boardId).success(function (data) {
+                deferred.resolve(data);
+            });
+            return deferred.promise;
+        }
     },
 
     AddIssueCtrl: function ($scope, $http) {

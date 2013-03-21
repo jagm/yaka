@@ -3,7 +3,7 @@ var app = angular
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/', {templateUrl: 'templates/board-list.html', controller: KanbanApp.Controllers.BoardListCtrl})
-            .when('/board/:boardId', {templateUrl: 'templates/board-detail.html', controller: KanbanApp.Controllers.BoardDetailCtrl})
+            .when('/board/:boardId', {templateUrl: 'templates/board-detail.html', controller: KanbanApp.Controllers.BoardDetailCtrl, resolve: KanbanApp.Controllers.BoardDetailCtrlResolve})
             .otherwise({redirectTo: '/'});
     }])
     .filter('jodaDate', function () {
@@ -11,6 +11,9 @@ var app = angular
     })
     .filter('friendlyDate', function () {
         return KanbanApp.Filters.friendlyDate;
+    })
+    .directive('kanbanIssues', function () {
+        return KanbanApp.Directives.issuesColumn
     });
 
 app.run(function ($http, $rootScope) {
