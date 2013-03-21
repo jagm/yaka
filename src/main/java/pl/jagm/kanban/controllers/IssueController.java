@@ -68,6 +68,25 @@ public class IssueController {
         return response;
     }
 
+    @RequestMapping(value = "/change-state", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Map<String, Object> changeState(@RequestParam(value = "issue_id") int issueId, @RequestParam(value = "state_id") int stateId) {
+        Map<String, Object> response = new HashMap();
+        ArrayList<ObjectError> errors = new ArrayList();
+        response.put("errors", errors);
+
+        Issue issue = issueDao.read(issueId);
+        State state = stateDao.read(stateId);
+
+        IssueState issueState = new IssueState(issue, state);
+        issue.addState(issueState);
+        stateDao.createIsueState(issueState);
+        response.put("issue", issue);
+
+        return response;
+    }
+
     @InitBinder
     public void initBinder(ServletRequestDataBinder binder) {
         binder.registerCustomEditor(Version.class, "version", new VersionPropertyEditorSupport(versionDao));
