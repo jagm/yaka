@@ -11,6 +11,8 @@ import java.util.List;
 @Transactional
 public class IssueDaoImpl extends AbstractDao implements IssueDao {
 
+    private static final String LIST_QUERY = "SELECT issue FROM Issue AS issue JOIN issue.states AS issueState JOIN issueState.state AS state WHERE state.board = %s AND issueState.created = (SELECT MAX(issueState2.created) FROM IssueState AS issueState2 WHERE issueState2.issue = issue.id)";
+
     @Override
     public void create(@NotNull Issue issue) {
         getCurrentSession().persist(issue);
@@ -22,17 +24,6 @@ public class IssueDaoImpl extends AbstractDao implements IssueDao {
     }
 
     @Override
-    public List<Issue> list(@NotNull int boardId) {
-        String query =
-                "select issue from Issue as issue join issue.states as issueState join issueState.state as state " +
-                        "where " +
-                        "state.board = " + boardId + " and " +
-                        "issueState.created =" +
-                        "(select max(issueState2.created) from IssueState as issueState2 where issueState2.issue = issue.id)";
-        return getCurrentSession().createQuery(query).list();
-    }
-
-    @Override
     public void update(@NotNull Issue issue) {
         getCurrentSession().update(issue);
     }
@@ -41,4 +32,11 @@ public class IssueDaoImpl extends AbstractDao implements IssueDao {
     public void delete(@NotNull Issue issue) {
         getCurrentSession().delete(issue);
     }
+
+    @Override
+    public List<Issue> list(@NotNull int boardId) {
+        String query = String.format(LIST_QUERY, Integer.toString(boardId));
+        return getCurrentSession().createQuery(query).list();
+    }
+
 }

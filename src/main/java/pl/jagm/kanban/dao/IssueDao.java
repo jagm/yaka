@@ -11,10 +11,10 @@ public interface IssueDao {
 
     public Issue read(@NotNull final int id);
 
-    public List<Issue> list(@NotNull final int boardId);
-
     public void update(@NotNull final Issue issue);
 
     public void delete(@NotNull final Issue issue);
+
+    public List<Issue> list(@NotNull final int boardId);
 
 }
