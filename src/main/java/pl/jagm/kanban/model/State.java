@@ -17,9 +17,11 @@ public class State implements Model {
     @GeneratedValue
     private int id;
 
+    @javax.validation.constraints.NotNull
     @Column(nullable = false)
     private String name;
 
+    @javax.validation.constraints.NotNull
     @JsonBackReference
     @ManyToOne(optional = false)
     @JoinColumn(name = "board")
