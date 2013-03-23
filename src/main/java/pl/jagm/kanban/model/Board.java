@@ -4,6 +4,7 @@ import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +17,8 @@ public class Board implements Model {
     @GeneratedValue
     private int id;
 
+    @javax.validation.constraints.NotNull
+    @Size(min = 4, max = 250)
     @Column(nullable = false)
     private String name;
 
