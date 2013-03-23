@@ -16,6 +16,11 @@ public class StateDaoImpl extends AbstractDao implements StateDao {
     }
 
     @Override
+    public void create(@NotNull State state) {
+        getCurrentSession().persist(state);
+    }
+
+    @Override
     public void createIsueState(@NotNull IssueState issueState) {
         getCurrentSession().persist(issueState);
     }

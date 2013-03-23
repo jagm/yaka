@@ -8,6 +8,8 @@ public interface StateDao {
 
     public State read(@NotNull final int id);
 
+    public void create(@NotNull final State state);
+
     public void createIsueState(@NotNull final IssueState issueState);
 
 }
