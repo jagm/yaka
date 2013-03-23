@@ -3,19 +3,38 @@ KanbanApp.Directives = {
     issuesColumn: {
         link: function postLink(scope, iElement, iAttrs) {
             setTimeout(function () {
-                var offset = $('.states .issues').offset();
-                //$('.states .issues').height();
-                var $scroll = $('.states .state .issues').slimScroll({
-                    height: ($('.states').height() - offset.top - 10) + 'px'
+                $states = $('.states .state');
+                var width = 0;
+                $states.each(function() {
+                    width += Math.ceil($(this).width()) + 1;
                 });
+                $('.states').width(width + 5);
+
+                var offset = $('.states .issues').offset();
+                var height = $('.states').height() - offset.top - 20;
+                //console.log($('.states').height(), offset.top);
+                var $scroll = $('.states .state .issues').slimScroll({
+                    height: height + 'px'
+                });
+
+                /*$('.states-container').slimScrollHorizontal({
+                    width: ($('.states-container').width()) + 'px',
+                    height: ($('.states').height() + 10) + 'px',
+                    touchScrollStep: 0,
+                    wheelStep: 0
+                });*/
 
                 $('.issues').sortable({
                     connectWith: '.issues',
                     receive: function (event, ui) {
-                        var stateId = ui.item.closest('ul').data('stateId');
+                        var $state = ui.item.closest('ul');
+                        var stateId = $state.data('stateId');
                         var issueId = ui.item.data('issueId');
                         console.log('[RECEIVE]: ', 'issueId:' + issueId + ', stateId:', stateId);
                         scope.changeState(issueId, stateId);
+
+                        $state.trigger('mouseover'); // for slimscroll
+
                         /*console.log($(this).sortable('toArray', {key: 'issue'}));
                          console.log('----------------------');*/
                     },

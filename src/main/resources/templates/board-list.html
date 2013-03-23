@@ -1,5 +1,19 @@
-<ul>
-    <li ng-repeat="board in boards">
+<ul class="nav nav-tabs main-tabs" ng-controller="KanbanApp.Controllers.BoardListCtrl">
+    <li ng-repeat="board in boards" ng-class="{active: board.id == boardId }">
         <a href="#/board/{{board.id}}">{{board.name}} ({{board.states.length}})</a>
     </li>
+    <li><a data-toggle="modal" data-target="#add-board-modal"><i class="icon-plus"></i> add board</a></li>
+
+    <li class="pull-right" ng-class="{disabled: !boardId}">
+        <a data-toggle="modal" data-target="#add-issue-modal">
+            <i class="icon-plus"></i> Add issue
+        </a>
+    </li>
+    <li class="pull-right" ng-class="{disabled: !boardId}">
+        <a href="#" data-toggle="modal" data-target="#add-state-modal">
+            <i class="icon-plus"></i> Add state
+        </a>
+    </li>
 </ul>
+
+<ng-include src="'templates/add-board.html'"></ng-include>

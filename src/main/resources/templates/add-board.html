@@ -1,0 +1,18 @@
+<div id="add-board-modal" name="add-board-modal" class="modal hide fade">
+    <form ng-controller="KanbanApp.Controllers.AddBoardCtrl">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Add board</h3>
+        </div>
+        <div class="modal-body">
+            <label for="add-board-name">Add name</label>
+            <input ng-model="board.name" type="text" name="name" class="input-xlarge" id="add-board-name"
+                   placeholder="Name" required/>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="save(board)">Save changes</button>
+        </div>
+    </form>
+</div>

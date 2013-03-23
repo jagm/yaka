@@ -11,6 +11,10 @@ body > .container-fluid {
     height: 100%;
 }
 
+body > .container-fluid .main-tabs {
+    margin-top: 10px;
+}
+
 body > .container-fluid .app-view {
     height: 100%;
 }
@@ -19,9 +23,20 @@ body > .container-fluid .app-view {
     color: #fff;
 }
 
+.app-view {
+    margin-top: 10px;
+    height: 100%;
+}
+
+.states-container {
+    position: relative;
+    height: 100%;
+}
+
 .states {
     overflow: hidden;
     list-style: none;
+    margin: 0;
     height: 100%;
 }
 
@@ -29,11 +44,19 @@ body > .container-fluid .app-view {
     border-left: 1px dotted #bbb;
 }
 
+.state:last-child h4 {
+    font-size: 12px;
+    margin: 0;
+}
+
+.state:last-child .version, .state:last-child time {
+    display: none;
+}
+
 .state {
     padding: 10px 0;
     margin: 0;
     border-right: 1px dotted #bbb;
-    height: 100%;
     position: relative;
 }
 

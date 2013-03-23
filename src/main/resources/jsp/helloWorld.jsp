@@ -31,6 +31,8 @@
 
 <div class="container-fluid">
 
+    <ng-include src="'templates/board-list.html'"></ng-include>
+
     <div class="app-view" ng-view></div>
 </div>
 
@@ -47,6 +49,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.slimscroll.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/slimScrollHorizontal.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.notify.js"></script>
 <script src="${pageContext.request.contextPath}/js/moment.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/filters.js"></script>

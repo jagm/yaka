@@ -1,0 +1,20 @@
+<div id="add-state-modal" name="add-state-modal" class="modal hide fade">
+    <form ng-controller="KanbanApp.Controllers.AddStateCtrl">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Add state</h3>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" ng-model="state.board"/>
+
+            <label for="add-state-name">Add name</label>
+            <input ng-model="state.name" type="text" name="name" class="input-xlarge" id="add-state-name"
+                   placeholder="Name" required/>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="save(state)">Save changes</button>
+        </div>
+    </form>
+</div>

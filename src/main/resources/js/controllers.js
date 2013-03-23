@@ -72,6 +72,50 @@ KanbanApp.Controllers = {
                     console.log(data);
                 });
         };
+    },
+
+
+    AddStateCtrl: function ($scope, $http, $route) {
+        $scope.state = {
+            board: $scope.boardId
+        };
+
+        $scope.save = function (state) {
+            $http.post(
+                '/kanban/board/add-state',
+                $.param(state),
+                {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+            ).success(function (data) {
+                    if (data.errors && data.errors.length) {
+
+                        KanbanApp.Notify.error(data.errors, 'error!!1')
+                    } else {
+                        console.log('success!');
+                        $route.reload();
+                    }
+                    console.log(data);
+                });
+        };
+    },
+
+    AddBoardCtrl: function ($scope, $http, $route) {
+        $scope.board = {};
+        $scope.save = function (board) {
+            $http.post(
+                '/kanban/board/add',
+                $.param(board),
+                {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+            ).success(function (data) {
+                    if (data.errors && data.errors.length) {
+
+                        KanbanApp.Notify.error(data.errors, 'error!!1')
+                    } else {
+                        console.log('success!');
+                        $route.reload();
+                    }
+                    console.log(data);
+                });
+        };
     }
 
 }
