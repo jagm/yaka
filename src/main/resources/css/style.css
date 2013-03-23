@@ -100,6 +100,10 @@ body > .container-fluid .app-view {
     float: right;
 }
 
-#add-issue-modal form {
+.modal form {
     margin: 0;
+}
+
+.nav-tabs li a:focus {
+    outline: 0;
 }

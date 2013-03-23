@@ -60,6 +60,7 @@ public class BoardController {
         } else {
             boardDao.create(board);
             response.put("board", board);
+            response.put("boards", boardDao.list());
         }
 
         return response;
