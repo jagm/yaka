@@ -8,11 +8,7 @@ import spock.lang.Specification
 public class ConfigurationDaoImplTest extends Specification {
 
     def sessionFactory = Mock(SessionFactory)
-    def configurationDao = new ConfigurationDaoImpl()
-
-    def setup() {
-        configurationDao.setSessionFactory(sessionFactory)
-    }
+    def configurationDao = new ConfigurationDaoImpl(sessionFactory: sessionFactory)
 
     def "create test"() {
         given:
