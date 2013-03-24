@@ -1,11 +1,33 @@
 KanbanApp.Directives = {
 
+    notify: {
+        link: function postLink(scope, iElement, iAttrs) {
+            setTimeout(function () {
+                KanbanApp.Notify = (function () {
+
+                    $(function () {
+                        console.log($("#notify-container"));
+                        $("#notify-container").notify();
+                    });
+
+                    return {
+                        error: function (message, title) {
+                            $("#notify-container")
+                                .notify("create", "error-template", { title: title, text: message });
+                        }
+                    }
+
+                })();
+            }, 0);
+        }
+    },
+
     issuesColumn: {
         link: function postLink(scope, iElement, iAttrs) {
             setTimeout(function () {
                 $states = $('.states .state');
                 var width = 0;
-                $states.each(function() {
+                $states.each(function () {
                     width += Math.ceil($(this).width()) + 1;
                 });
                 $('.states').width(width + 5);
@@ -18,11 +40,11 @@ KanbanApp.Directives = {
                 });
 
                 /*$('.states-container').slimScrollHorizontal({
-                    width: ($('.states-container').width()) + 'px',
-                    height: ($('.states').height() + 10) + 'px',
-                    touchScrollStep: 0,
-                    wheelStep: 0
-                });*/
+                 width: ($('.states-container').width()) + 'px',
+                 height: ($('.states').height() + 10) + 'px',
+                 touchScrollStep: 0,
+                 wheelStep: 0
+                 });*/
 
                 $('.issues').sortable({
                     connectWith: '.issues',

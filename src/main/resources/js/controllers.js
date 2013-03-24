@@ -100,7 +100,6 @@ KanbanApp.Controllers = (function () {
         },
 
         AddBoardCtrl: function ($scope, $http, $rootScope) {
-            console.log($scope);
             $scope.board = {};
             $scope.save = function (board) {
                 $http.post(

@@ -14,7 +14,11 @@ var app = angular
     })
     .directive('kanbanIssues', function () {
         return KanbanApp.Directives.issuesColumn
+    })
+    .directive('kanbanNotify', function () {
+        return KanbanApp.Directives.notify
     });
+
 
 app.run(function ($http, $rootScope) {
     $rootScope.authenticated = KanbanApp.Configuration.authenticated;
@@ -24,21 +28,5 @@ app.run(function ($http, $rootScope) {
             $rootScope.versions = data;
         });
     }
+
 });
-
-
-KanbanApp.Notify = (function () {
-
-    $(function () {
-        console.log($("#notify-container"));
-        $("#notify-container").notify();
-    });
-
-    return {
-        error: function (message, title) {
-            $("#notify-container")
-                .notify("create", "error-template", { title: title, text: message });
-        }
-    }
-
-})();

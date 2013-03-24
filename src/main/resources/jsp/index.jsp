@@ -23,8 +23,8 @@
             </span>
         </div>
         <ul class="nav pull-right">
-            <li class="active"><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+            <%--<li class="active"><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>--%>
             <security:authorize access="isAuthenticated()">
                 <li><a href="${pageContext.request.contextPath}/j_spring_security_logout">Logout</a></li>
             </security:authorize>
