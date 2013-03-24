@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import pl.jagm.kanban.dao.BoardDao;
 import pl.jagm.kanban.dao.StateDao;
@@ -85,7 +85,7 @@ public class BoardController {
     }
 
     @InitBinder
-    public void initBinder(ServletRequestDataBinder binder) {
+    public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Board.class, "board", new BoardPropertyEditorSupport(boardDao));
     }
 
