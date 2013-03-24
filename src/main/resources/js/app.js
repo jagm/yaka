@@ -2,7 +2,7 @@ var app = angular
     .module('kanban', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-            //.when('/', {controller: KanbanApp.Controllers.BoardListCtrl})
+            .when('/', {templateUrl: 'templates/welcome.html'})
             .when('/board/:boardId', {templateUrl: 'templates/board-detail.html', controller: KanbanApp.Controllers.BoardDetailCtrl, resolve: KanbanApp.Controllers.BoardDetailCtrlResolve})
             .otherwise({redirectTo: '/'});
     }])

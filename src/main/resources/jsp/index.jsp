@@ -1,4 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="en" ng-app="kanban">
 
@@ -16,7 +17,7 @@
 <div class="navbar navbar-static-top navbar-inverse">
     <div class="navbar-inner">
         <div class="brand">
-            <a href="${pageContext.request.contextPath}">Kanban</a>
+            <a href="${pageContext.request.contextPath}">YAKB</a>
             <span ng-show="boardName"> /
                 <a href="#/board/{{boardId}}">{{ boardName }}</a>
             </span>
@@ -24,16 +25,21 @@
         <ul class="nav pull-right">
             <li class="active"><a href="#">Link</a></li>
             <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+            <security:authorize access="isAuthenticated()">
+                <li><a href="${pageContext.request.contextPath}/j_spring_security_logout">Logout</a></li>
+            </security:authorize>
         </ul>
     </div>
 </div>
 
 <div class="container-fluid">
 
-    <ng-include src="'templates/board-list.html'"></ng-include>
+    <security:authorize access="isAuthenticated()">
+        <ng-include src="'templates/board-list.html'"></ng-include>
+    </security:authorize>
 
-    <div class="app-view" ng-view></div>
+    <div class="app-view" ng-view>
+    </div>
 </div>
 
 <ng-include src="'templates/notify.html'"></ng-include>
