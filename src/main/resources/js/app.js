@@ -17,10 +17,13 @@ var app = angular
     });
 
 app.run(function ($http, $rootScope) {
-    $http.get('/kanban/version/list').success(function (data) {
-        KanbanApp.Configuration.versions = data;
-        $rootScope.versions = data;
-    });
+    $rootScope.authenticated = KanbanApp.Configuration.authenticated;
+    if (KanbanApp.Configuration.authenticated) {
+        $http.get('/kanban/version/list').success(function (data) {
+            KanbanApp.Configuration.versions = data;
+            $rootScope.versions = data;
+        });
+    }
 });
 
 

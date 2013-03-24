@@ -46,7 +46,9 @@
 
 <script>
     var KanbanApp = {
-        Configuration: {}
+        Configuration: {
+            authenticated: <security:authorize access="isAnonymous()">!</security:authorize>true
+        }
     };
 </script>
 
