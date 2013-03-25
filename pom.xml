@@ -20,7 +20,7 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <name>kanban</name>
+    <name>YAKA</name>
     <url>http://maven.apache.org</url>
 
     <properties>

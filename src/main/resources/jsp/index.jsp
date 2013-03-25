@@ -17,7 +17,7 @@
 <div class="navbar navbar-static-top navbar-inverse">
     <div class="navbar-inner">
         <div class="brand">
-            <a href="${pageContext.request.contextPath}">YAKB</a>
+            <a href="${pageContext.request.contextPath}">YAKA</a>
             <span ng-show="boardName"> /
                 <a href="#/board/{{boardId}}">{{ boardName }}</a>
             </span>
