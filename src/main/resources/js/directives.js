@@ -10,10 +10,26 @@ KanbanApp.Directives = {
                         $("#notify-container").notify();
                     });
 
+                    var showStringError = function (message, title) {
+                        $("#notify-container")
+                            .notify("create", "error-template", { title: title, text: message });
+                    }
+
+                    var showArrayError = function (messages, title) {
+                        var message = '<ul><li>';
+                        message += messages.join('</li><li>');
+                        message += '</li></ul>';
+
+                        showStringError(message, title);
+                    }
+
                     return {
                         error: function (message, title) {
-                            $("#notify-container")
-                                .notify("create", "error-template", { title: title, text: message });
+                            if (angular.isArray(message)) {
+                                showArrayError(message, title);
+                            } else {
+                                showStringError(message, title);
+                            }
                         }
                     }
 

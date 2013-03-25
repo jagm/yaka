@@ -108,7 +108,9 @@ KanbanApp.Controllers = (function () {
                     {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
                 ).success(function (data) {
                         if (data.errors && data.errors.length) {
-                            KanbanApp.Notify.error(data.errors, 'error!!1');
+                            KanbanApp.Notify.error(data.errors.map(function (el) {
+                                return el.field + ' ' + el.defaultMessage;
+                            }), 'error!!!');
                         } else {
                             $('#add-board-modal').modal('hide');
                             $rootScope.boards = data.boards;
