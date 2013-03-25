@@ -47,7 +47,8 @@
 <script>
     var KanbanApp = {
         Configuration: {
-            authenticated: <security:authorize access="isAnonymous()">!</security:authorize>true
+            authenticated: <security:authorize access="isAnonymous()">!</security:authorize>true,
+            contextPath: '${pageContext.request.contextPath}'
         }
     };
 </script>

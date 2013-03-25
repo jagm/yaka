@@ -2,7 +2,7 @@ KanbanApp.Controllers = (function () {
     return {
 
         BoardListCtrl: function ($scope, $rootScope, $http) {
-            $http.get('/kanban/board/list').success(function (data) {
+            $http.get(KanbanApp.Configuration.contextPath + '/board/list').success(function (data) {
                 $rootScope.boards = data;
             });
         },
@@ -18,7 +18,7 @@ KanbanApp.Controllers = (function () {
 
             $scope.changeState = function (issueId, stateId) {
                 $http.post(
-                    '/kanban/issues/change-state',
+                    KanbanApp.Configuration.contextPath + '/issues/change-state',
                     $.param({issue_id: issueId, state_id: stateId}),
                     {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
                 ).success(function (data) {
@@ -36,7 +36,7 @@ KanbanApp.Controllers = (function () {
         BoardDetailCtrlResolve: {
             board: function ($http, $q, $route) {
                 var deferred = $q.defer();
-                $http.get('/kanban/board/read/' + $route.current.params.boardId).success(function (data) {
+                $http.get(KanbanApp.Configuration.contextPath + '/board/read/' + $route.current.params.boardId).success(function (data) {
                     deferred.resolve(data);
                 });
                 return deferred.promise;
@@ -44,7 +44,7 @@ KanbanApp.Controllers = (function () {
             },
             issues: function ($http, $q, $route) {
                 var deferred = $q.defer();
-                $http.get('/kanban/issues/list/' + $route.current.params.boardId).success(function (data) {
+                $http.get(KanbanApp.Configuration.contextPath + '/issues/list/' + $route.current.params.boardId).success(function (data) {
                     deferred.resolve(data);
                 });
                 return deferred.promise;
@@ -60,7 +60,7 @@ KanbanApp.Controllers = (function () {
                 issue.state_id = $scope.board.states[0].id;
                 console.log(issue);
                 $http.post(
-                    '/kanban/issues/add',
+                    KanbanApp.Configuration.contextPath + '/issues/add',
                     $.param(issue),
                     {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
                 ).success(function (data) {
@@ -83,7 +83,7 @@ KanbanApp.Controllers = (function () {
 
             $scope.save = function (state) {
                 $http.post(
-                    '/kanban/board/add-state',
+                    KanbanApp.Configuration.contextPath + '/board/add-state',
                     $.param(state),
                     {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
                 ).success(function (data) {
@@ -103,7 +103,7 @@ KanbanApp.Controllers = (function () {
             $scope.board = {};
             $scope.save = function (board) {
                 $http.post(
-                    '/kanban/board/add',
+                    KanbanApp.Configuration.contextPath + '/board/add',
                     $.param(board),
                     {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
                 ).success(function (data) {
