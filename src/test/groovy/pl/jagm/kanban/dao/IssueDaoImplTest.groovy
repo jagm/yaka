@@ -50,7 +50,7 @@ public class IssueDaoImplTest extends Specification {
         2 * sessionFactory.getCurrentSession() >> session
         1 * session.get(Issue.class, 7) >> issue
         1 * session.update(issue)
-        issue.deleted == true
+        issue.deleted
     }
 
     def "test list"() {
