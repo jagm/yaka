@@ -26,6 +26,7 @@ app.run(function ($http, $rootScope) {
         $http.get(KanbanApp.Configuration.contextPath + '/version/list').success(function (data) {
             KanbanApp.Configuration.versions = data;
             $rootScope.versions = data;
+            $rootScope.colors = KanbanApp.Configuration.colors;
         });
     }
 

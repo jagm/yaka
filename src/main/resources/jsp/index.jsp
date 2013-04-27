@@ -1,3 +1,4 @@
+<%@ page import="pl.jagm.kanban.model.Color" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
@@ -48,7 +49,8 @@
     var KanbanApp = {
         Configuration: {
             authenticated: <security:authorize access="isAnonymous()">!</security:authorize>true,
-            contextPath: '${pageContext.request.contextPath}'
+            contextPath: '${pageContext.request.contextPath}',
+            colors: <%= Color.getJson() %>
         }
     };
 </script>

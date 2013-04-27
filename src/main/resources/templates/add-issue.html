@@ -12,10 +12,16 @@
             <input ng-model="issue.name" type="text" name="title" class="input-xlarge" id="add-issue-title"
                    placeholder="Title" required/>
 
+            <label for="add-issue-color">Select color</label>
+            <select name="color" id="add-issue-color" ng-model="issue.color" value="YELLOW">
+                <option ng-repeat="color in colors" value="{{color}}">{{color}}</option>
+            </select>
+
             <label for="add-issue-version">Select version</label>
             <select name="version" id="add-issue-version" ng-model="issue.version" value="">
                 <option ng-repeat="version in versions" value="{{version.id}}">{{version.name}}</option>
             </select>
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
