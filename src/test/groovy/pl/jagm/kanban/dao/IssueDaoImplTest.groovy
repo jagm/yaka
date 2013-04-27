@@ -47,8 +47,10 @@ public class IssueDaoImplTest extends Specification {
         issueDaoImpl.delete(issue)
 
         then:
-        1 * sessionFactory.getCurrentSession() >> session
-        1 * session.delete(issue)
+        2 * sessionFactory.getCurrentSession() >> session
+        1 * session.get(Issue.class, 7) >> issue
+        1 * session.update(issue)
+        issue.deleted == true
     }
 
     def "test list"() {

@@ -30,7 +30,9 @@ public class IssueDaoImpl extends AbstractDao implements IssueDao {
 
     @Override
     public void delete(@NotNull Issue issue) {
-        getCurrentSession().delete(issue);
+        read(issue.getId());
+        issue.setDeleted(true);
+        update(issue);
     }
 
     @Override
