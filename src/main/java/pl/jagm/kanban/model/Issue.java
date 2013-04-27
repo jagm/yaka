@@ -11,9 +11,6 @@ import java.util.List;
 @Entity
 public class Issue implements Model {
 
-    // FIXME: move to configuration
-    private static final String JIRA_PREFIX = "AVGM-";
-
     @Id
     @GeneratedValue
     private int id;
@@ -29,8 +26,6 @@ public class Issue implements Model {
     private Version version;
 
     private boolean deleted = false;
-
-    private int jiraId;
 
     @OneToMany(mappedBy = "issue", fetch = FetchType.EAGER)
     @OrderBy("created DESC")
@@ -68,14 +63,6 @@ public class Issue implements Model {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
-    }
-
-    public int getJiraId() {
-        return jiraId;
-    }
-
-    public void setJiraId(int jiraId) {
-        this.jiraId = jiraId;
     }
 
     @NotNull
