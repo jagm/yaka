@@ -27,6 +27,8 @@ public class Issue implements Model {
 
     private boolean deleted = false;
 
+    private Color color = Color.YELLOW;
+
     @OneToMany(mappedBy = "issue", fetch = FetchType.EAGER)
     @OrderBy("created DESC")
     private List<IssueState> states = new LinkedList<>();
@@ -63,6 +65,15 @@ public class Issue implements Model {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    @NotNull
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(@NotNull Color color) {
+        this.color = color;
     }
 
     @NotNull
