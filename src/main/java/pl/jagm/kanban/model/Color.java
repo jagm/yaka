@@ -21,6 +21,6 @@ public enum Color {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "{}";
+        return "[]";
     }
 }
