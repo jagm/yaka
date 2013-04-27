@@ -5,8 +5,10 @@
 
             <div>
                 <ul class="issues" data-state-id="{{state.id}}">
-                    <li id="issue_{{issue.id}}" class="issue" data-issue-id="{{issue.id}}"
+                    <li id="issue_{{issue.id}}" class="issue {{issue.color}}" data-issue-id="{{issue.id}}"
                         ng-repeat="issue in issues | filter:{states.0.state.id: state.id}">
+                        <button type="button" class="close" ng-click="delete(issue.id)">&times;</button>
+
                         <h4>{{issue.name}}</h4>
 
                         <div class="version">{{issue.version.name}}</div>

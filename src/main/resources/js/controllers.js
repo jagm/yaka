@@ -31,6 +31,21 @@ KanbanApp.Controllers = (function () {
                     });
             };
 
+            $scope.delete = function (issueId) {
+                $http.post(
+                    KanbanApp.Configuration.contextPath + '/issues/delete',
+                    $.param({issue_id: issueId}),
+                    {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+                ).success(function (data) {
+                        if (data) {
+                            $scope.issues = $scope.issues.filter(function (issue) {
+                                return issue.id !== issueId;
+                            })
+                        }
+                        console.log('[Issue delete][response]: ', data);
+                    });
+            }
+
         },
 
         BoardDetailCtrlResolve: {

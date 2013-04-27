@@ -89,6 +89,10 @@ body > .container-fluid .app-view {
     border-radius: 5px;
 }
 
+.issue .close {
+    margin-right: -8px;
+}
+
 .issue .version {
     font-size: 9px;
     float: left;
@@ -106,4 +110,32 @@ body > .container-fluid .app-view {
 
 .nav-tabs li a:focus {
     outline: 0;
+}
+
+.issues > .BLUE {
+    background: #389090;
+}
+
+.issues > .PINK {
+    background: #F47E7D;
+}
+
+.issues > .GREEN {
+    background: #B5D045;
+}
+
+.issues > .ORANGE {
+    background: #FB8335;
+}
+
+.issues > .LIGHT_BLUE {
+    background: #81C0C5;
+}
+
+.issues > .BEIGE {
+    background: #E0C7A8;
+}
+
+.issues > .YELLOW {
+    background: #FFF79A;
 }
