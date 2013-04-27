@@ -77,7 +77,7 @@ public class IssueDaoImplTest extends Specification {
 
         then:
         1 * sessionFactory.getCurrentSession() >> session
-        1 * session.createQuery("SELECT issue FROM Issue AS issue JOIN issue.states AS issueState JOIN issueState.state AS state WHERE state.board = 19 AND issueState.created = (SELECT MAX(issueState2.created) FROM IssueState AS issueState2 WHERE issueState2.issue = issue.id)") >> query
+        1 * session.createQuery("SELECT issue FROM Issue AS issue JOIN issue.states AS issueState JOIN issueState.state AS state WHERE state.board = 19 AND issue.deleted = false AND issueState.created = (SELECT MAX(issueState2.created) FROM IssueState AS issueState2 WHERE issueState2.issue = issue.id)") >> query
         1 * query.list() >> [issue, issue2]
         result == [issue, issue2]
     }
