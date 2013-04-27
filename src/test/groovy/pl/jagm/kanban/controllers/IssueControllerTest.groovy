@@ -98,6 +98,14 @@ public class IssueControllerTest extends Specification {
 
     }
 
+    def "test delete action"() {
+        when:
+        issueController.delete(5)
+
+        then:
+        1 * issueDao.delete(5)
+    }
+
     def "test binder initiation"() {
         given:
         def binder = Mock(WebDataBinder, { constructorArgs: [new Object()] })

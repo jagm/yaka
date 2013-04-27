@@ -87,6 +87,14 @@ public class IssueController {
         return response;
     }
 
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    boolean delete(@RequestParam(value = "issue_id") int issueId) {
+        issueDao.delete(issueId);
+        return true;
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Version.class, "version", new VersionPropertyEditorSupport(versionDao));
