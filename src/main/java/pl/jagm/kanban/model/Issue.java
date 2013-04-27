@@ -28,6 +28,8 @@ public class Issue implements Model {
     @JoinColumn(name = "version_id")
     private Version version;
 
+    private boolean deleted = false;
+
     private int jiraId;
 
     @OneToMany(mappedBy = "issue", fetch = FetchType.EAGER)
@@ -58,6 +60,14 @@ public class Issue implements Model {
 
     public void setVersion(@NotNull Version version) {
         this.version = version;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public int getJiraId() {
