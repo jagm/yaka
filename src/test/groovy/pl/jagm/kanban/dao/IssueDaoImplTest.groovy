@@ -43,8 +43,22 @@ public class IssueDaoImplTest extends Specification {
     }
 
     def "test delete"() {
+        given:
+        def newIssue = new Issue(id: 7, name: "test issue 2")
+
         when:
         issueDaoImpl.delete(issue)
+
+        then:
+        2 * sessionFactory.getCurrentSession() >> session
+        1 * session.get(Issue.class, 7) >> newIssue
+        1 * session.update(newIssue)
+        newIssue.deleted
+    }
+
+    def "test delete by id"() {
+        when:
+        issueDaoImpl.delete(7)
 
         then:
         2 * sessionFactory.getCurrentSession() >> session

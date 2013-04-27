@@ -19,7 +19,7 @@ public class IssueDaoImpl extends AbstractDao implements IssueDao {
     }
 
     @Override
-    public Issue read(@NotNull int id) {
+    public Issue read(int id) {
         return (Issue) getCurrentSession().get(Issue.class, id);
     }
 
@@ -30,13 +30,18 @@ public class IssueDaoImpl extends AbstractDao implements IssueDao {
 
     @Override
     public void delete(@NotNull Issue issue) {
-        read(issue.getId());
+        delete(issue.getId());
+    }
+
+    @Override
+    public void delete(int id) {
+        Issue issue = read(id);
         issue.setDeleted(true);
         update(issue);
     }
 
     @Override
-    public List<Issue> list(@NotNull int boardId) {
+    public List<Issue> list(int boardId) {
         String query = String.format(LIST_QUERY, Integer.toString(boardId));
         return getCurrentSession().createQuery(query).list();
     }
