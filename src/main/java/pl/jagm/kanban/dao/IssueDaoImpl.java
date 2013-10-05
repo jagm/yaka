@@ -9,24 +9,9 @@ import java.util.List;
 
 @Component
 @Transactional
-public class IssueDaoImpl extends AbstractDao implements IssueDao {
+public class IssueDaoImpl extends AbstractGenericDao<Issue> implements IssueDao {
 
     private static final String LIST_QUERY = "SELECT issue FROM Issue AS issue JOIN issue.states AS issueState JOIN issueState.state AS state WHERE state.board = %s AND issue.deleted = false AND issueState.created = (SELECT MAX(issueState2.created) FROM IssueState AS issueState2 WHERE issueState2.issue = issue.id) ORDER BY importance";
-
-    @Override
-    public void create(@NotNull Issue issue) {
-        getCurrentSession().persist(issue);
-    }
-
-    @Override
-    public Issue read(int id) {
-        return (Issue) getCurrentSession().get(Issue.class, id);
-    }
-
-    @Override
-    public void update(@NotNull Issue issue) {
-        getCurrentSession().update(issue);
-    }
 
     @Override
     public void delete(@NotNull Issue issue) {
@@ -44,6 +29,10 @@ public class IssueDaoImpl extends AbstractDao implements IssueDao {
     public List<Issue> list(int boardId) {
         String query = String.format(LIST_QUERY, Integer.toString(boardId));
         return getCurrentSession().createQuery(query).list();
+    }
+
+    protected Class getObjectClass() {
+        return Issue.class;
     }
 
 }
