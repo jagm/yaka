@@ -16,6 +16,16 @@ public class StateDaoImpl extends AbstractGenericDao<State> implements StateDao 
     }
 
     @Override
+    public void delete(@NotNull State object) {
+        throw new UnsupportedOperationException(); // TODO: implement case when state has issues
+    }
+
+    @Override
+    public void update(@NotNull State object) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     protected Class getObjectClass() {
         return State.class;
     }
