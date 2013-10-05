@@ -33,6 +33,8 @@ public class Issue implements Model {
     @OrderBy("created DESC")
     private List<IssueState> states = new LinkedList<>();
 
+    private int importance = 0;
+
     public int getId() {
         return id;
     }
@@ -87,5 +89,13 @@ public class Issue implements Model {
 
     public void addState(@NotNull IssueState state) {
         states.add(state);
+    }
+
+    public int getImportance() {
+        return importance;
+    }
+
+    public void setImportance(int importance) {
+        this.importance = importance;
     }
 }

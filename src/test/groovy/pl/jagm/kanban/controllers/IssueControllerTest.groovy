@@ -98,6 +98,39 @@ public class IssueControllerTest extends Specification {
 
     }
 
+    def "test action change order"() {
+        given:
+        def issues = [
+                1: new Issue(id: 1, importance: 0),
+                3: new Issue(id: 3, importance: 0),
+                5: new Issue(id: 5, importance: 0),
+                7: new Issue(id: 7, importance: 0)
+        ]
+
+        when:
+        def result = issueController.changeOrder([5, 3, 7, 1])
+
+        then:
+        with(issueDao) {
+            1 * read(1) >> issues[1]
+            1 * read(3) >> issues[3]
+            1 * read(5) >> issues[5]
+            1 * read(7) >> issues[7]
+            1 * update(issues[1])
+            1 * update(issues[3])
+            1 * update(issues[5])
+            1 * update(issues[7])
+        }
+        issues[1].importance == 4
+        issues[3].importance == 2
+        issues[5].importance == 1
+        issues[7].importance == 3
+        result == [
+                'errors': [],
+                'status': 'OK'
+        ]
+    }
+
     def "test delete action"() {
         when:
         issueController.delete(5)

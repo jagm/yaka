@@ -2,6 +2,7 @@
 <configuration>
 
     <property name="LOGS_DIRECTORY" value="${logs.directory}"/>
+    <property name="DEFAULT_ADDITIVITY" value="true"/>
 
     <appender name="WEB" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOGS_DIRECTORY}/yaka.log</file>
@@ -73,16 +74,16 @@
         </layout>
     </appender>
 
-    <logger name="org.hibernate" level="INFO" additivity="false">
+    <logger name="org.hibernate" level="INFO" additivity="${DEFAULT_ADDITIVITY}">
         <appender-ref ref="ASYNC_HIBERNATE"/>
     </logger>
 
-    <logger name="com.mchange.v2.c3p0" level="ALL" additivity="false">
+    <logger name="com.mchange.v2.c3p0" level="ALL" additivity="${DEFAULT_ADDITIVITY}">
         <appender-ref ref="ASYNC_DB_POOLING"/>
     </logger>
 
     <!-- log4jdbc -->
-    <logger name="jdbc.sqltiming" level="DEBUG" additivity="false">
+    <logger name="jdbc.sqltiming" level="DEBUG" additivity="${DEFAULT_ADDITIVITY}">
         <appender-ref ref="ASYNC_SQL"/>
     </logger>
 

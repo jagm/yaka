@@ -1,5 +1,7 @@
 package pl.jagm.kanban.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -25,6 +27,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/issues")
 public class IssueController {
+
+    private static final Logger log = LoggerFactory.getLogger(IssueController.class);
 
     private final IssueDao issueDao;
     private final VersionDao versionDao;
@@ -84,6 +88,30 @@ public class IssueController {
         stateDao.createIsueState(issueState);
         response.put("issue", issue);
 
+        return response;
+    }
+
+    @RequestMapping(value = "/change-order", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Map<String, Object> changeOrder(@RequestParam(value = "order[]") List<Integer> order) {
+        Map<String, Object> response = new HashMap();
+        ArrayList<ObjectError> errors = new ArrayList();
+        response.put("errors", errors);
+
+        log.info("Changing order for issues {}", order);
+
+        int counter = 0;
+        for (int issueId : order) {
+            ++counter;
+            Issue issue = issueDao.read(issueId);
+            issue.setImportance(counter);
+            issueDao.update(issue);
+        }
+
+        log.info("Order changed for issues {}", order);
+
+        response.put("status", "OK");
         return response;
     }
 

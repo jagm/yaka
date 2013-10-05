@@ -31,6 +31,24 @@ KanbanApp.Controllers = (function () {
                     });
             };
 
+            $scope.changeOrder = function (issues) {
+                var order = issues.map(function (issue) {
+                    return parseInt(issue.replace('issue_', ''), 10);
+                });
+                $http.post(
+                    KanbanApp.Configuration.contextPath + '/issues/change-order',
+                    $.param({order: order}),
+                    {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+                ).success(function (data) {
+                        if (data.errors && data.errors.length) {
+                            KanbanApp.Notify.error(data.errors, 'error!!1')
+                        } else {
+
+                        }
+                        console.log(data);
+                    });
+            };
+
             $scope.delete = function (issueId) {
                 $http.post(
                     KanbanApp.Configuration.contextPath + '/issues/delete',
@@ -89,7 +107,6 @@ KanbanApp.Controllers = (function () {
                     });
             };
         },
-
 
         AddStateCtrl: function ($scope, $http, $route) {
             $scope.state = {

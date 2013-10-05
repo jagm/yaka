@@ -68,21 +68,20 @@ KanbanApp.Directives = {
                         var $state = ui.item.closest('ul');
                         var stateId = $state.data('stateId');
                         var issueId = ui.item.data('issueId');
-                        console.log('[RECEIVE]: ', 'issueId:' + issueId + ', stateId:', stateId);
+                        console.debug('[RECEIVE]: ', 'issueId:' + issueId + ', stateId:', stateId);
                         scope.changeState(issueId, stateId);
 
                         $state.trigger('mouseover'); // for slimscroll
 
-                        /*console.log($(this).sortable('toArray', {key: 'issue'}));
-                         console.log('----------------------');*/
+                        console.debug($(this).sortable('toArray', {key: 'issue'}));
+                        console.debug('----------------------');
                     },
                     update: function (event, ui) {
-                        if (false && !ui.sender) {
-                            console.log('[UPDATE]: ', ui.item, ui.sender);
-                            console.log(event);
-                            console.log($(this).sortable('toArray', {key: 'issue'}));
-                            console.log('----------------------');
-                        }
+                        scope.changeOrder($(this).sortable('toArray', {key: 'issue'}));
+                        console.debug('[UPDATE]: ', ui.item, ui.sender);
+                        console.debug(event);
+                        console.debug($(this).sortable('toArray', {key: 'issue'}));
+                        console.debug('----------------------');
                     }
                 }).disableSelection();
             }, 0);
