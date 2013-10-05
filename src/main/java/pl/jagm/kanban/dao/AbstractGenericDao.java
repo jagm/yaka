@@ -22,4 +22,9 @@ public abstract class AbstractGenericDao<T extends Model> extends AbstractDao {
         getCurrentSession().update(object);
     }
 
+    public void delete(@NotNull T object) {
+        getCurrentSession().delete(object);
+    }
+
+
 }
