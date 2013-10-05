@@ -44,5 +44,20 @@ public class StateDaoImplTest extends Specification {
         1 * session.persist(issueState)
     }
 
+    def "test delete"() {
+        when:
+        stateDaoImpl.delete(new State())
+
+        then:
+        UnsupportedOperationException exception = thrown()
+    }
+
+    def "test update"() {
+        when:
+        stateDaoImpl.update(new State())
+
+        then:
+        UnsupportedOperationException exception = thrown()
+    }
 
 }
