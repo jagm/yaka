@@ -9,7 +9,7 @@ import java.util.List;
 
 @Component
 @Transactional
-public class VersionDaoImpl extends AbstractDao implements VersionDao {
+public class VersionDaoImpl extends AbstractGenericDao<Version> implements VersionDao {
 
     @Override
     public List<Version> list() {
@@ -17,7 +17,17 @@ public class VersionDaoImpl extends AbstractDao implements VersionDao {
     }
 
     @Override
-    public Version read(@NotNull int id) {
-        return (Version) getCurrentSession().get(Version.class, id);
+    public void update(@NotNull Version object) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void delete(@NotNull Version object) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    protected Class getObjectClass() {
+        return Version.class;
     }
 }
