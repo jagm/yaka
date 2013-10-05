@@ -55,8 +55,8 @@ public class IssueController {
     public
     @ResponseBody
     Map<String, Object> save(@Valid Issue issue, @RequestParam(value = "state_id") int stateId, BindingResult bindingResult) {
-        Map<String, Object> response = new HashMap();
-        ArrayList<ObjectError> errors = new ArrayList();
+        Map<String, Object> response = new HashMap<>();
+        List<ObjectError> errors = new ArrayList<>();
         response.put("errors", errors);
         if (bindingResult.hasErrors()) {
             errors.addAll(bindingResult.getAllErrors());
@@ -76,8 +76,8 @@ public class IssueController {
     public
     @ResponseBody
     Map<String, Object> changeState(@RequestParam(value = "issue_id") int issueId, @RequestParam(value = "state_id") int stateId) {
-        Map<String, Object> response = new HashMap();
-        ArrayList<ObjectError> errors = new ArrayList();
+        Map<String, Object> response = new HashMap<>();
+        List<ObjectError> errors = new ArrayList<>();
         response.put("errors", errors);
 
         Issue issue = issueDao.read(issueId);
@@ -95,8 +95,8 @@ public class IssueController {
     public
     @ResponseBody
     Map<String, Object> changeOrder(@RequestParam(value = "order[]") List<Integer> order) {
-        Map<String, Object> response = new HashMap();
-        ArrayList<ObjectError> errors = new ArrayList();
+        Map<String, Object> response = new HashMap<>();
+        List<ObjectError> errors = new ArrayList<>();
         response.put("errors", errors);
 
         log.info("Changing order for issues {}", order);
