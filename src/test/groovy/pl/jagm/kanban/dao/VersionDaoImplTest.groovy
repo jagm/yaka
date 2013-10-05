@@ -39,4 +39,20 @@ public class VersionDaoImplTest extends Specification {
         result == [this.version, version2]
     }
 
+    def "test delete"() {
+        when:
+        versionDaoImpl.delete(new Version())
+
+        then:
+        UnsupportedOperationException exception = thrown()
+    }
+
+    def "test update"() {
+        when:
+        versionDaoImpl.update(new Version())
+
+        then:
+        UnsupportedOperationException exception = thrown()
+    }
+
 }
