@@ -8,20 +8,15 @@ import pl.jagm.kanban.model.State;
 
 @Component
 @Transactional
-public class StateDaoImpl extends AbstractDao implements StateDao {
-
-    @Override
-    public State read(@NotNull int id) {
-        return (State) getCurrentSession().get(State.class, id);
-    }
-
-    @Override
-    public void create(@NotNull State state) {
-        getCurrentSession().persist(state);
-    }
+public class StateDaoImpl extends AbstractGenericDao<State> implements StateDao {
 
     @Override
     public void createIsueState(@NotNull IssueState issueState) {
         getCurrentSession().persist(issueState);
+    }
+
+    @Override
+    protected Class getObjectClass() {
+        return State.class;
     }
 }
