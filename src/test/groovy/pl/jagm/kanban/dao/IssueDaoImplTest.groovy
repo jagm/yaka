@@ -39,7 +39,7 @@ public class IssueDaoImplTest extends Specification {
 
         then:
         1 * sessionFactory.getCurrentSession() >> session
-        1 * session.update(issue)
+        1 * session.merge(issue)
     }
 
     def "test delete"() {
@@ -52,7 +52,7 @@ public class IssueDaoImplTest extends Specification {
         then:
         2 * sessionFactory.getCurrentSession() >> session
         1 * session.get(Issue.class, 7) >> newIssue
-        1 * session.update(newIssue)
+        1 * session.merge(newIssue)
         newIssue.deleted
     }
 
@@ -63,7 +63,7 @@ public class IssueDaoImplTest extends Specification {
         then:
         2 * sessionFactory.getCurrentSession() >> session
         1 * session.get(Issue.class, 7) >> issue
-        1 * session.update(issue)
+        1 * session.merge(issue)
         issue.deleted
     }
 

@@ -39,7 +39,7 @@ public class BoardDaoImplTest extends Specification {
 
         then:
         1 * sessionFactory.getCurrentSession() >> session
-        1 * session.update(board)
+        1 * session.merge(board)
     }
 
     def "test delete"() {
