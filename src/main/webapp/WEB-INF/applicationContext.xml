@@ -43,7 +43,7 @@
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="${jdbc.driverClassName}"/>
         <property name="jdbcUrl"
-                  value="jdbc:mysql://${OPENSHIFT_MYSQL_DB_HOST}:${OPENSHIFT_MYSQL_DB_PORT}/${OPENSHIFT_APP_NAME}"/>
+                  value="jdbc:log4jdbc:mysql://${OPENSHIFT_MYSQL_DB_HOST}:${OPENSHIFT_MYSQL_DB_PORT}/${OPENSHIFT_APP_NAME}"/>
         <property name="user" value="${OPENSHIFT_MYSQL_DB_USERNAME}"/>
         <property name="password" value="${OPENSHIFT_MYSQL_DB_PASSWORD}"/>
 
