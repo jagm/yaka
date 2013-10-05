@@ -7,7 +7,7 @@ public interface ConfigurationDao {
 
     public void create(@NotNull final Configuration configuration);
 
-    public Configuration read(@NotNull final Long id);
+    public Configuration read(@NotNull final int id);
 
     public void update(@NotNull final Configuration configuration);
 
