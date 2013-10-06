@@ -20,6 +20,9 @@ public class Issue implements Model {
     @Column(nullable = false)
     private String name;
 
+    @Size(max = 3000)
+    private String description = "";
+
     @javax.validation.constraints.NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "version_id")
@@ -50,6 +53,14 @@ public class Issue implements Model {
 
     public void setName(@NotNull String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @NotNull
