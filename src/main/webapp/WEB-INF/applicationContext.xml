@@ -20,6 +20,7 @@
 
     <mvc:default-servlet-handler/>
     <mvc:resources mapping="/js/**" location="classpath:/js/"/>
+    <mvc:resources mapping="/jslib/**" location="classpath:/jslib/"/>
     <mvc:resources mapping="/css/**" location="classpath:/css/"/>
     <mvc:resources mapping="/img/**" location="classpath:/img/"/>
     <mvc:resources mapping="/templates/**" location="classpath:/templates/"/>

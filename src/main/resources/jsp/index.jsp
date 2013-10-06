@@ -56,13 +56,13 @@
 </script>
 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/jslib/jquery-1.9.1.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.slimscroll.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/slimScrollHorizontal.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.notify.js"></script>
-<script src="${pageContext.request.contextPath}/js/moment.min.js"></script>
+<script src="${pageContext.request.contextPath}/jslib/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/jslib/jquery.slimscroll.min.js"></script>
+<script src="${pageContext.request.contextPath}/jslib/slimScrollHorizontal.js"></script>
+<script src="${pageContext.request.contextPath}/jslib/jquery.notify.js"></script>
+<script src="${pageContext.request.contextPath}/jslib/moment.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/filters.js"></script>
 <script src="${pageContext.request.contextPath}/js/app.js"></script>
 <script src="${pageContext.request.contextPath}/js/controllers.js"></script>
