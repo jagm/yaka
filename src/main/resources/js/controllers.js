@@ -1,4 +1,7 @@
 KanbanApp.Controllers = (function () {
+
+    var FORM_HTTP_HEADER = { headers: {'Content-Type': 'application/x-www-form-urlencoded'} };
+
     return {
 
         BoardListCtrl: function ($scope, $rootScope, $http) {
@@ -18,10 +21,10 @@ KanbanApp.Controllers = (function () {
 
             $scope.changeState = function (issueId, stateId) {
                 $http.post(
-                    KanbanApp.Configuration.contextPath + '/issues/change-state',
-                    $.param({issue_id: issueId, state_id: stateId}),
-                    {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
-                ).success(function (data) {
+                        KanbanApp.Configuration.contextPath + '/issues/change-state',
+                        $.param({issue_id: issueId, state_id: stateId}),
+                        FORM_HTTP_HEADER
+                    ).success(function (data) {
                         if (data.errors && data.errors.length) {
                             KanbanApp.Notify.error(data.errors, 'error!!1')
                         } else {
@@ -36,10 +39,10 @@ KanbanApp.Controllers = (function () {
                     return parseInt(issue.replace('issue_', ''), 10);
                 });
                 $http.post(
-                    KanbanApp.Configuration.contextPath + '/issues/change-order',
-                    $.param({order: order}),
-                    {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
-                ).success(function (data) {
+                        KanbanApp.Configuration.contextPath + '/issues/change-order',
+                        $.param({order: order}),
+                        FORM_HTTP_HEADER
+                    ).success(function (data) {
                         if (data.errors && data.errors.length) {
                             KanbanApp.Notify.error(data.errors, 'error!!1')
                         } else {
@@ -51,10 +54,10 @@ KanbanApp.Controllers = (function () {
 
             $scope.delete = function (issueId) {
                 $http.post(
-                    KanbanApp.Configuration.contextPath + '/issues/delete',
-                    $.param({issue_id: issueId}),
-                    {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
-                ).success(function (data) {
+                        KanbanApp.Configuration.contextPath + '/issues/delete',
+                        $.param({issue_id: issueId}),
+                        FORM_HTTP_HEADER
+                    ).success(function (data) {
                         if (data) {
                             $scope.issues = $scope.issues.filter(function (issue) {
                                 return issue.id !== issueId;
@@ -93,12 +96,11 @@ KanbanApp.Controllers = (function () {
                 issue.state_id = $scope.board.states[0].id;
                 console.log(issue);
                 $http.post(
-                    KanbanApp.Configuration.contextPath + '/issues/add',
-                    $.param(issue),
-                    {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
-                ).success(function (data) {
+                        KanbanApp.Configuration.contextPath + '/issues/add',
+                        $.param(issue),
+                        FORM_HTTP_HEADER
+                    ).success(function (data) {
                         if (data.errors && data.errors.length) {
-
                             KanbanApp.Notify.error(data.errors, 'error!!1')
                         } else {
 
@@ -115,10 +117,10 @@ KanbanApp.Controllers = (function () {
 
             $scope.save = function (state) {
                 $http.post(
-                    KanbanApp.Configuration.contextPath + '/board/add-state',
-                    $.param(state),
-                    {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
-                ).success(function (data) {
+                        KanbanApp.Configuration.contextPath + '/board/add-state',
+                        $.param(state),
+                        FORM_HTTP_HEADER
+                    ).success(function (data) {
                         if (data.errors && data.errors.length) {
 
                             KanbanApp.Notify.error(data.errors, 'error!!1')
@@ -135,10 +137,10 @@ KanbanApp.Controllers = (function () {
             $scope.board = {};
             $scope.save = function (board) {
                 $http.post(
-                    KanbanApp.Configuration.contextPath + '/board/add',
-                    $.param(board),
-                    {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
-                ).success(function (data) {
+                        KanbanApp.Configuration.contextPath + '/board/add',
+                        $.param(board),
+                        FORM_HTTP_HEADER
+                    ).success(function (data) {
                         if (data.errors && data.errors.length) {
                             KanbanApp.Notify.error(data.errors.map(function (el) {
                                 return el.field + ' ' + el.defaultMessage;
