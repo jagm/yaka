@@ -125,10 +125,9 @@ KanbanApp.Controllers = (function () {
 
                         KanbanApp.Notify.error(data.errors, 'error!!1')
                     } else {
-                        console.log('success!');
+                        $('#add-state-modal').modal('hide');
                         $route.reload();
                     }
-                    console.log(data);
                 });
             };
         },

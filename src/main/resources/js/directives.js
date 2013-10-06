@@ -41,6 +41,7 @@ KanbanApp.Directives = {
     issuesColumn: {
         link: function postLink(scope, iElement, iAttrs) {
             setTimeout(function () {
+                console.log('issuesColumn!!!');
                 $states = $('.states .state');
                 var width = 0;
                 $states.each(function () {
@@ -86,7 +87,17 @@ KanbanApp.Directives = {
                 }).disableSelection();
             }, 0);
         }
+    },
+
+    modalFormResetOnHidden: {
+        link: function postLink(scope, iElement, iAttrs) {
+            setTimeout(function () {
+                console.log(iElement);
+                $(iElement).on('hidden', function () {
+                    $(this).find('form').get(0).reset();
+                });
+            }, 0);
+        }
     }
 
-}
-;
+};

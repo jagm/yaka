@@ -13,10 +13,13 @@ var app = angular
         return KanbanApp.Filters.friendlyDate;
     })
     .directive('kanbanIssues', function () {
-        return KanbanApp.Directives.issuesColumn
+        return KanbanApp.Directives.issuesColumn;
     })
     .directive('kanbanNotify', function () {
-        return KanbanApp.Directives.notify
+        return KanbanApp.Directives.notify;
+    })
+    .directive('kanbanResetOnHidden', function () {
+        return KanbanApp.Directives.modalFormResetOnHidden;
     });
 
 
