@@ -94,7 +94,12 @@ KanbanApp.Directives = {
             setTimeout(function () {
                 console.log(iElement);
                 $(iElement).on('hidden', function () {
-                    $(this).find('form').get(0).reset();
+                    var $form = $(this).find('form');
+                    $form.get(0).reset();
+                    $form.find('[data-default-value]').each(function () {
+                        var $element = $(this);
+                        $element.val($element.data('default-value'));
+                    });
                 });
             }, 0);
         }
