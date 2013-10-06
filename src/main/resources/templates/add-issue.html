@@ -12,6 +12,11 @@
             <input ng-model="issue.name" type="text" name="title" class="input-xlarge" id="add-issue-title"
                    placeholder="Title" required/>
 
+            <label for="add-issue-description">Add description</label>
+            <textarea ng-model="issue.description" rows="5" name="description" class="input-xlarge"
+                      id="add-issue-description"
+                      placeholder="Description"></textarea>
+
             <label for="add-issue-color">Select color</label>
             <select name="color" id="add-issue-color" ng-model="issue.color" value="YELLOW">
                 <option ng-repeat="color in colors" value="{{color}}">{{color}}</option>
