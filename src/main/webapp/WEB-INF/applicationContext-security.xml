@@ -21,16 +21,9 @@
     </http>
 
     <authentication-manager>
-        <authentication-provider ref="authenticationProvider"/>
+        <authentication-provider user-service-ref="userService">
+            <password-encoder hash="sha-256"/>
+        </authentication-provider>
     </authentication-manager>
-
-    <!--    <authentication-manager>
-            <authentication-provider>
-                <user-service>
-                    <user name="jagm" password="123qwe" authorities="admin, guest"/>
-                    <user name="guest" password="123" authorities="guest"/>
-                </user-service>
-            </authentication-provider>
-        </authentication-manager>-->
 
 </beans:beans>
