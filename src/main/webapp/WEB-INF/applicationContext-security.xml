@@ -16,17 +16,21 @@
     <http use-expressions="true">
         <intercept-url pattern="/" access="permitAll"/>
         <intercept-url pattern="/**" access="hasRole('admin')"/>
-        <form-login/>
+        <form-login default-target-url="/" always-use-default-target="true"/>
         <logout/>
     </http>
 
     <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="jagm" password="123qwe" authorities="admin, guest"/>
-                <user name="guest" password="123" authorities="guest"/>
-            </user-service>
-        </authentication-provider>
+        <authentication-provider ref="authenticationProvider"/>
     </authentication-manager>
+
+    <!--    <authentication-manager>
+            <authentication-provider>
+                <user-service>
+                    <user name="jagm" password="123qwe" authorities="admin, guest"/>
+                    <user name="guest" password="123" authorities="guest"/>
+                </user-service>
+            </authentication-provider>
+        </authentication-manager>-->
 
 </beans:beans>
