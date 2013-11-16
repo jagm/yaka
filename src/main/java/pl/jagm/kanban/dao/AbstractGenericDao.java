@@ -33,11 +33,11 @@ public abstract class AbstractGenericDao<T extends Model> {
     }
 
     @NotNull
-    public Session getCurrentSession() {
+    final public Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
+    final public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
