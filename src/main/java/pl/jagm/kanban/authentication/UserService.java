@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
         AppUser user = userDao.read(userName);
 
         if (user != null) {
-            List<GrantedAuthority> authorities = new ArrayList();
+            List<GrantedAuthority> authorities = new ArrayList<>();
             for (Role role : user.getRoles()) {
                 authorities.add(new SimpleGrantedAuthority(role.getName()));
             }

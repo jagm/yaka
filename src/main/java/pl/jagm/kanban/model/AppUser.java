@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class AppUser implements Model {
@@ -27,7 +27,7 @@ public class AppUser implements Model {
     private boolean disabled = false;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    private List<Role> roles;
+    private Set<Role> roles;
 
 
     public int getId() {
@@ -65,11 +65,11 @@ public class AppUser implements Model {
     }
 
     @NotNull
-    public List<Role> getRoles() {
-        return Collections.unmodifiableList(roles);
+    public Set<Role> getRoles() {
+        return Collections.unmodifiableSet(roles);
     }
 
-    public void setRoles(@NotNull List<Role> roles) {
+    public void setRoles(@NotNull Set<Role> roles) {
         this.roles = roles;
     }
 
