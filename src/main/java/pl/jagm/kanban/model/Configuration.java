@@ -62,11 +62,7 @@ public class Configuration implements Model {
 
         Configuration that = (Configuration) o;
 
-        if (id != that.id) return false;
-        if (!name.equals(that.name)) return false;
-        if (!value.equals(that.value)) return false;
-
-        return true;
+        return id == that.id && name.equals(that.name) && value.equals(that.value);
     }
 
     @Override

@@ -6,7 +6,7 @@ import pl.jagm.kanban.model.State;
 
 public interface StateDao {
 
-    public State read(@NotNull final int id);
+    public State read(final int id);
 
     public void create(@NotNull final State state);
 

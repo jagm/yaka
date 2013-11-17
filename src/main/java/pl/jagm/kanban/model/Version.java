@@ -20,7 +20,7 @@ public class Version implements Model {
 
     @JsonIgnore
     @OneToMany(mappedBy = "version")
-    private List<Issue> issues = new LinkedList();
+    private List<Issue> issues = new LinkedList<>();
 
 
     public int getId() {

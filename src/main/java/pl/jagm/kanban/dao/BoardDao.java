@@ -9,7 +9,7 @@ public interface BoardDao {
 
     public void create(@NotNull final Board board);
 
-    public Board read(@NotNull final int id);
+    public Board read(final int id);
 
     public List<Board> list();
 

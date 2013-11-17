@@ -25,7 +25,7 @@ public class Board implements Model {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
-    private List<State> states = new LinkedList();
+    private List<State> states = new LinkedList<>();
 
     @javax.validation.constraints.NotNull
     @JsonBackReference
