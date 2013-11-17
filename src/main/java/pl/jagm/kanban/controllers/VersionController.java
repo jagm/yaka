@@ -24,8 +24,7 @@ public class VersionController {
     public
     @ResponseBody
     List<Version> getList() {
-        List<Version> versions = versionDao.list();
-        return versions;
+        return versionDao.list();
     }
 
 }
