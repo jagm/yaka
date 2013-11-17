@@ -19,6 +19,12 @@ public class BoardDaoImpl extends AbstractGenericDao<Board> implements BoardDao 
         return getCurrentSession().createQuery("from Board").list();
     }
 
+    @Override
+    public List<Board> list(int userId) {
+        return getCurrentSession().createQuery("from Board where user = ?")
+                .setInteger(0, userId)
+                .list();
+    }
 
     @Override
     protected Class getObjectClass() {

@@ -1,8 +1,11 @@
 package pl.jagm.kanban.controllers
 
+import org.springframework.security.core.Authentication
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.validation.BindingResult
 import org.springframework.validation.ObjectError
 import org.springframework.web.bind.WebDataBinder
+import pl.jagm.kanban.authentication.MyUser
 import pl.jagm.kanban.dao.BoardDao
 import pl.jagm.kanban.dao.StateDao
 import pl.jagm.kanban.model.Board
@@ -19,6 +22,11 @@ public class BoardControllerTest extends Specification {
 
     def "test action getList"() {
         given:
+        SecurityContextHolder.createEmptyContext()
+        SecurityContextHolder.getContext().setAuthentication({
+            principal: new MyUser(1, "test", "test", true, true, true, true, [])
+        } as Authentication)
+
         def boardsList = [
                 board,
                 new Board(id: 2, name: 'board 2')
@@ -28,7 +36,7 @@ public class BoardControllerTest extends Specification {
         def result = boardController.getList()
 
         then:
-        1 * boardDao.list() >> boardsList
+        1 * boardDao.list(1) >> boardsList
         result == boardsList
     }
 

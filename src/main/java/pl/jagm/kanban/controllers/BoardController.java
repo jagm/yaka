@@ -1,11 +1,13 @@
 package pl.jagm.kanban.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import pl.jagm.kanban.authentication.MyUser;
 import pl.jagm.kanban.dao.BoardDao;
 import pl.jagm.kanban.dao.StateDao;
 import pl.jagm.kanban.model.Board;
@@ -35,7 +37,8 @@ public class BoardController {
     public
     @ResponseBody
     List<Board> getList() {
-        List<Board> boards = boardDao.list();
+        MyUser user = (MyUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Board> boards = boardDao.list(user.getId());
         return boards;
     }
 

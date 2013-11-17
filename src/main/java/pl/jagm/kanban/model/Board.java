@@ -1,5 +1,6 @@
 package pl.jagm.kanban.model;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,6 +27,12 @@ public class Board implements Model {
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
     private List<State> states = new LinkedList();
 
+    @javax.validation.constraints.NotNull
+    @JsonBackReference
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user")
+    private AppUser user;
+
     public int getId() {
         return id;
     }
@@ -50,5 +57,14 @@ public class Board implements Model {
 
     public void setStates(@NotNull List<State> states) {
         this.states = states;
+    }
+
+    @NotNull
+    public AppUser getUser() {
+        return user;
+    }
+
+    public void setUser(@NotNull AppUser user) {
+        this.user = user;
     }
 }

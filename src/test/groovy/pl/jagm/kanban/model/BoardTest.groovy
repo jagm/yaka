@@ -56,7 +56,7 @@ public class BoardTest extends Specification {
     }
 
     def createBoard(final String name) {
-        new Board(name: name)
+        new Board(name: name, user: new AppUser())
     }
 
 }

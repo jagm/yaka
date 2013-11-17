@@ -13,6 +13,8 @@ public interface BoardDao {
 
     public List<Board> list();
 
+    public List<Board> list(int userId);
+
     public void update(@NotNull final Board board);
 
     public void delete(@NotNull final Board board);
