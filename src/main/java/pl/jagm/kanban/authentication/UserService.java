@@ -3,7 +3,6 @@ package pl.jagm.kanban.authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -35,7 +34,7 @@ public class UserService implements UserDetailsService {
             for (Role role : user.getRoles()) {
                 authorities.add(new SimpleGrantedAuthority(role.getName()));
             }
-            return new User(user.getLogin(), user.getPassword(), true, true, true, !user.isDisabled(), authorities);
+            return new MyUser(user.getId(), user.getLogin(), user.getPassword(), true, true, true, !user.isDisabled(), authorities);
         }
 
         throw new UsernameNotFoundException(userName + " not found");
