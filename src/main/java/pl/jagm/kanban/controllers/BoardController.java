@@ -38,24 +38,22 @@ public class BoardController {
     @ResponseBody
     List<Board> getList() {
         MyUser user = (MyUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Board> boards = boardDao.list(user.getId());
-        return boards;
+        return boardDao.list(user.getId());
     }
 
     @RequestMapping("/read/{id}")
     public
     @ResponseBody
     Board read(@PathVariable("id") int id) {
-        Board board = boardDao.read(id);
-        return board;
+        return boardDao.read(id);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public
     @ResponseBody
     Map<String, Object> save(@Valid Board board, BindingResult bindingResult) {
-        Map<String, Object> response = new HashMap();
-        ArrayList<ObjectError> errors = new ArrayList();
+        Map<String, Object> response = new HashMap<>();
+        ArrayList<ObjectError> errors = new ArrayList<>();
         response.put("errors", errors);
 
         if (bindingResult.hasErrors()) {
@@ -73,8 +71,8 @@ public class BoardController {
     public
     @ResponseBody
     Map<String, Object> save(@Valid State state, BindingResult bindingResult) {
-        Map<String, Object> response = new HashMap();
-        ArrayList<ObjectError> errors = new ArrayList();
+        Map<String, Object> response = new HashMap<>();
+        ArrayList<ObjectError> errors = new ArrayList<>();
         response.put("errors", errors);
 
         if (bindingResult.hasErrors()) {
