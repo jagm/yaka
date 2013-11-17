@@ -3,6 +3,7 @@ package pl.jagm.kanban.authentication
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import pl.jagm.kanban.dao.UserDao
 import pl.jagm.kanban.model.AppUser
+import pl.jagm.kanban.model.Role
 import spock.lang.Specification
 
 public class UserServiceTest extends Specification {
@@ -22,7 +23,8 @@ public class UserServiceTest extends Specification {
 
     def "test load user by username"() {
         given:
-        def appUser = new AppUser(login: "jagm", password: "123")
+        def roles = [new Role(name: "admin"), new Role(name: "superadmin"), new Role(name: "root")]
+        def appUser = new AppUser(login: "jagm", password: "123", roles: roles)
 
         when:
         def user = userService.loadUserByUsername("jagm")
@@ -30,7 +32,7 @@ public class UserServiceTest extends Specification {
         then:
         1 * userDao.read("jagm") >> appUser
         user.getUsername() == "jagm"
-        user.getAuthorities().size() == 2
+        user.getAuthorities().size() == 3
     }
 
 }

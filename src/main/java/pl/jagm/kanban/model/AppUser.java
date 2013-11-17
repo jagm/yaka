@@ -1,10 +1,11 @@
 package pl.jagm.kanban.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.jetbrains.annotations.NotNull;
+
+import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 public class AppUser implements Model {
@@ -25,6 +26,9 @@ public class AppUser implements Model {
 
     private boolean disabled = false;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    private List<Role> roles;
+
 
     public int getId() {
         return id;
@@ -34,19 +38,21 @@ public class AppUser implements Model {
         this.id = id;
     }
 
+    @NotNull
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
+    public void setLogin(@NotNull String login) {
         this.login = login;
     }
 
+    @NotNull
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(@NotNull String password) {
         this.password = password;
     }
 
@@ -58,4 +64,16 @@ public class AppUser implements Model {
         this.disabled = disabled;
     }
 
+    @NotNull
+    public List<Role> getRoles() {
+        return Collections.unmodifiableList(roles);
+    }
+
+    public void setRoles(@NotNull List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void addRole(@NotNull Role role) {
+        roles.add(role);
+    }
 }

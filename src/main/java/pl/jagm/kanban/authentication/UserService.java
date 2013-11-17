@@ -1,6 +1,5 @@
 package pl.jagm.kanban.authentication;
 
-import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,7 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.jagm.kanban.dao.UserDao;
 import pl.jagm.kanban.model.AppUser;
+import pl.jagm.kanban.model.Role;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,11 +20,6 @@ import java.util.List;
 public class UserService implements UserDetailsService {
 
     private final UserDao userDao;
-
-    private static final List<GrantedAuthority> DEFAULT_AUTHORITIES = ImmutableList.of(
-            (GrantedAuthority) new SimpleGrantedAuthority("admin"),
-            (GrantedAuthority) new SimpleGrantedAuthority("guest")
-    );
 
     @Autowired
     public UserService(UserDao userDao) {
@@ -35,7 +31,11 @@ public class UserService implements UserDetailsService {
         AppUser user = userDao.read(userName);
 
         if (user != null) {
-            return new User(user.getLogin(), user.getPassword(), true, true, true, !user.isDisabled(), DEFAULT_AUTHORITIES);
+            List<GrantedAuthority> authorities = new ArrayList();
+            for (Role role : user.getRoles()) {
+                authorities.add(new SimpleGrantedAuthority(role.getName()));
+            }
+            return new User(user.getLogin(), user.getPassword(), true, true, true, !user.isDisabled(), authorities);
         }
 
         throw new UsernameNotFoundException(userName + " not found");
