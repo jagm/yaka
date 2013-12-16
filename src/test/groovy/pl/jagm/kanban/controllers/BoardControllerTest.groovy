@@ -8,24 +8,25 @@ import org.springframework.web.bind.WebDataBinder
 import pl.jagm.kanban.authentication.MyUser
 import pl.jagm.kanban.dao.BoardDao
 import pl.jagm.kanban.dao.StateDao
+import pl.jagm.kanban.dao.UserDao
+import pl.jagm.kanban.model.AppUser
 import pl.jagm.kanban.model.Board
 import pl.jagm.kanban.model.State
 import pl.jagm.kanban.model.propertiesEditors.BoardPropertyEditorSupport
 import spock.lang.Specification
+
 
 public class BoardControllerTest extends Specification {
 
     def board = new Board(id: 1, name: 'board 1')
     def boardDao = Mock(BoardDao)
     def stateDao = Mock(StateDao)
-    def boardController = new BoardController(boardDao, stateDao)
+    def userDao = Mock(UserDao)
+    def boardController = new BoardController(boardDao, stateDao, userDao)
 
     def "test action getList"() {
         given:
-        SecurityContextHolder.createEmptyContext()
-        SecurityContextHolder.getContext().setAuthentication({
-            principal: new MyUser(1, "test", "test", true, true, true, true, [])
-        } as Authentication)
+        'setup security context'()
 
         def boardsList = [
                 board,
@@ -53,12 +54,14 @@ public class BoardControllerTest extends Specification {
         given:
         def bindingResult = Mock(BindingResult)
         def boards = [board, new Board(id: 2, name: 'test board 2')]
+        'setup security context'()
 
         when:
         def result = boardController.save(board, bindingResult)
 
         then:
         1 * bindingResult.hasErrors() >> false
+        1 * userDao.read(1) >> new AppUser(id: 1)
         with(boardDao) {
             1 * list() >> boards
             1 * create(board)
@@ -141,5 +144,13 @@ public class BoardControllerTest extends Specification {
         then:
         1 * binder.registerCustomEditor(Board.class, 'board', _ as BoardPropertyEditorSupport)
     }
+
+    def 'setup security context'() {
+        SecurityContextHolder.createEmptyContext()
+        SecurityContextHolder.getContext().setAuthentication({
+            principal: new MyUser(1, "test", "test", true, true, true, true, [])
+        } as Authentication)
+    }
+
 
 }

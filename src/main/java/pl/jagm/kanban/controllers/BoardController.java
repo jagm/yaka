@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.jagm.kanban.authentication.MyUser;
 import pl.jagm.kanban.dao.BoardDao;
 import pl.jagm.kanban.dao.StateDao;
+import pl.jagm.kanban.dao.UserDao;
 import pl.jagm.kanban.model.Board;
 import pl.jagm.kanban.model.State;
 import pl.jagm.kanban.model.propertiesEditors.BoardPropertyEditorSupport;
@@ -26,11 +27,13 @@ public class BoardController {
 
     private final BoardDao boardDao;
     private final StateDao stateDao;
+    private final UserDao userDao;
 
     @Autowired
-    public BoardController(BoardDao boardDao, StateDao stateDao) {
+    public BoardController(BoardDao boardDao, StateDao stateDao, UserDao userDao) {
         this.boardDao = boardDao;
         this.stateDao = stateDao;
+        this.userDao = userDao;
     }
 
     @RequestMapping("/list")
@@ -59,6 +62,8 @@ public class BoardController {
         if (bindingResult.hasErrors()) {
             errors.addAll(bindingResult.getAllErrors());
         } else {
+            MyUser user = (MyUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            board.setUser(userDao.read(user.getId()));
             boardDao.create(board);
             response.put("board", board);
             response.put("boards", boardDao.list());

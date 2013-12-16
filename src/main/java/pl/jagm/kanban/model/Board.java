@@ -27,7 +27,6 @@ public class Board implements Model {
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
     private List<State> states = new LinkedList<>();
 
-    @javax.validation.constraints.NotNull
     @JsonBackReference
     @ManyToOne(optional = false)
     @JoinColumn(name = "user")
